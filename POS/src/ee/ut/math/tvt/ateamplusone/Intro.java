@@ -5,6 +5,8 @@ import javax.swing.JPanel;
 
 public class Intro extends JFrame{
 
+	private static final long serialVersionUID = 1L;
+
 	public Intro(){
 		
 		super();
@@ -18,7 +20,6 @@ public class Intro extends JFrame{
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		new Intro();
 	}
 }
