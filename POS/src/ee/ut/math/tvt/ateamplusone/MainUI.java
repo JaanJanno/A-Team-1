@@ -4,11 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import javax.imageio.ImageIO;
-
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
@@ -16,8 +13,8 @@ public class MainUI extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	
-	ArrayList versionInfo;
-	ArrayList appInfo;
+	ArrayList<String> versionInfo;
+	ArrayList<String> appInfo;
 	
 	BufferedImage logo;
 	
@@ -44,6 +41,8 @@ public class MainUI extends JPanel {
 				
 			    vastus.add(sc.nextLine());
 			}
+			
+			sc.close();
 			
 			return vastus;
 			
