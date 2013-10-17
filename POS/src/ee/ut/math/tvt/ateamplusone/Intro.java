@@ -1,19 +1,20 @@
 package ee.ut.math.tvt.ateamplusone;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class Intro extends JFrame{
 
 	public Intro(){
 		
 		super();
-		this.setSize(800, 600);
+		this.setSize(0, 0);
 		this.setVisible(true);
 		
-		this.add(new MainUI());
-		
-		
-		// TODO Auto-generated constructor stub
+		JPanel ui = new MainUI();
+		this.add(ui);
+
+		this.setSize(900, 400);
 	}
 
 	public static void main(String[] args) {

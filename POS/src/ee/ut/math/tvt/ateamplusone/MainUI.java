@@ -2,21 +2,34 @@ package ee.ut.math.tvt.ateamplusone;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.imageio.ImageIO;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class MainUI extends JPanel {
 	
+	private static final long serialVersionUID = 1L;
+	
+	ArrayList versionInfo;
+	ArrayList appInfo;
+	
+	BufferedImage logo;
+	
+	
 	public MainUI(){
 		
-		ArrayList a = readFile("version.properties");
-		System.out.println(a.get(0));
+		appInfo     = readFile("application.properties");
+		versionInfo = readFile("version.properties");
 		
-		repaint();
+		logo = readImage("logo.png");
+		
+		
 	}
 	
 	public ArrayList<String> readFile(String address){
@@ -40,25 +53,40 @@ public class MainUI extends JPanel {
 		}
 	}
 	
+	public BufferedImage readImage(String aadress){
+		
+		try {
+			
+			BufferedImage img = ImageIO.read(this.getClass().getResourceAsStream(aadress));
+			return img;
+			
+		} catch (Exception ex) {
+		    	
+			System.out.println("Ei leia faili! " + aadress);
+			return null;
+		}
+	}
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 
 		super.paintComponent(g);
 		g.setColor(new Color(255,0,0));
 		g.fillRect(10, 10, 300, 300);
-		//g.drawRect(100, 100, 100, 100);
+		g.drawImage(logo, 300, 10, null);
 		g.setColor(new Color(0,0,0));
-		g.drawString("Team name: A-Team+1", 100, 100);
-		g.drawString("Team leader: Jaan Janno", 100, 150);
-		g.drawString("Leader's e-mail: jaan911@gmail.com", 100, 200);
-		g.drawString("Our epic teammembers:", 100, 250);
-		g.drawString("Jaan Janno", 100, 300);
-		g.drawString("Tõnis Kasekamp", 100, 350);
-		g.drawString("Silver Mazko", 100, 400);
-		g.drawString("Juhan-Rasmus Risti", 100, 450);
-		g.drawString("Sander Tiganik", 100, 500);
+		g.drawString("Team name: " + appInfo.get(1), 		25,  25);
+		g.drawString("Team leader: " + appInfo.get(3), 		25,  50);
+		g.drawString("Leader's e-mail: " + appInfo.get(5), 	25,  75);
+		g.drawString("Our epic teammembers:", 				25, 100);
+		g.drawString(""+ appInfo.get(7),					25, 150);
+		g.drawString(""+ appInfo.get(8), 					25, 175);
+		g.drawString(""+ appInfo.get(9), 					25, 200);
+		g.drawString(""+ appInfo.get(10), 					25, 225);
+		g.drawString(""+ appInfo.get(11), 					25, 250);
+
 		
-		g.drawString("Version number: 123", 100, 550);
+		g.drawString("Version number: " + versionInfo.get(1) + "." + versionInfo.get(3) + "." +  versionInfo.get(5), 25, 300);
 	}
 	
 }
