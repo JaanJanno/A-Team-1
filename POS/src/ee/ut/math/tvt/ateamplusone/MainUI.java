@@ -78,7 +78,7 @@ public class MainUI extends JPanel {
 		g.drawString("Team name: " + appInfo.get(1), 		25,  25);
 		g.drawString("Team leader: " + appInfo.get(3), 		25,  50);
 		g.drawString("Leader's e-mail: " + appInfo.get(5), 	25,  75);
-		g.drawString("Our epic teammembers:", 				25, 100);
+		g.drawString("Our teammembers:", 				25, 100);
 		g.drawString(""+ appInfo.get(7),					25, 150);
 		g.drawString(""+ appInfo.get(8), 					25, 175);
 		g.drawString(""+ appInfo.get(9), 					25, 200);
