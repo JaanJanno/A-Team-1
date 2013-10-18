@@ -3,7 +3,6 @@ package ee.ut.math.tvt.ateamplusone;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.imageio.ImageIO;
@@ -35,7 +34,7 @@ public class MainUI extends JPanel {
 		
 		try {
 			
-			Scanner sc = new java.util.Scanner(new File(address));
+			Scanner sc = new java.util.Scanner(this.getClass().getResourceAsStream(address));
 			
 			while (sc.hasNextLine()) {
 				
