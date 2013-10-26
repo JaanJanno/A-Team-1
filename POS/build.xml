@@ -9,6 +9,7 @@
         <pathelement location="bin"/>
         <pathelement location="lib/log4j-1.2.17.jar"/>
     </path>
+	
     <target name="init">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
@@ -35,9 +36,11 @@
 	    	</manifest>
 	   </jar>
 	</target>  
+	
     <target name="clean">
         <delete dir="bin"/>
     </target>
+	
     <target depends="clean" name="cleanall"/>
     <target depends="build-subprojects,build-project" name="build"/>
     <target name="build-subprojects"/>
@@ -58,10 +61,12 @@
             <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
         </unzip>
     </target>
+	
     <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
+	
     <target name="Intro (1)">
         <java classname="ee.ut.math.tvt.ateamplusone.Intro" failonerror="true" fork="yes">
             <classpath refid="POS.classpath"/>
