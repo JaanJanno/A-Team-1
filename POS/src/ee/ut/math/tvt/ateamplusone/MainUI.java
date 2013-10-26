@@ -25,9 +25,9 @@ public class MainUI extends JPanel {
 	public MainUI() {
 		try {
 			application.load(this.getClass().getResourceAsStream(
-					"application.properties"));
+					"/application.properties"));
 			version.load(this.getClass().getResourceAsStream(
-					"version.properties"));
+					"/version.properties"));
 
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -37,7 +37,7 @@ public class MainUI extends JPanel {
 			e.printStackTrace();
 		}
 
-		logo = readImage("logo.png");
+		logo = readImage("/logo.png");
 
 	}
 
