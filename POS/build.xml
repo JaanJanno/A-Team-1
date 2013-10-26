@@ -72,4 +72,10 @@
             <classpath refid="POS.classpath"/>
         </java>
     </target>
+	
+	<target name="runc" depends="build" description="Run the application (console)">
+		<java classname="ee.ut.math.tvt.ateamplusone.Intro" classpathref="test.classpath" fork="yes">
+			<arg value="console" />
+		</java>
+	</target>
 </project>
