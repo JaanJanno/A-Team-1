@@ -98,11 +98,11 @@ public class MainUI extends JPanel {
 				"Leader's e-mail: " + application.getProperty("team.email"),
 				25, 75);
 		g.drawString("Our teammembers:", 25, 100);
-		g.drawString("" + application.getProperty("team.jaan"), 25, 150);
-		g.drawString("" + application.getProperty("team.tk"), 25, 175);
-		g.drawString("" + application.getProperty("team.sander"), 25, 200);
-		g.drawString("" + application.getProperty("team.silver"), 25, 225);
-		g.drawString("" + application.getProperty("team.juhan"), 25, 250);
+		g.drawString(application.getProperty("team.jaan"), 25, 150);
+		g.drawString(application.getProperty("team.tk"), 25, 175);
+		g.drawString(application.getProperty("team.sander"), 25, 200);
+		g.drawString(application.getProperty("team.silver"), 25, 225);
+		g.drawString(application.getProperty("team.juhan"), 25, 250);
 
 		g.drawString(
 				"Version number: " + version.getProperty("build.major.number")
