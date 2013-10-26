@@ -3,11 +3,9 @@ package ee.ut.math.tvt.ateamplusone;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import java.util.Properties;
@@ -42,30 +40,6 @@ public class MainUI extends JPanel {
 		logo = readImage("logo.png");
 
 	}
-
-	// public ArrayList<String> readFile(String address){
-	//
-	// ArrayList<String> vastus = new ArrayList<>();
-	//
-	// try {
-	//
-	// Scanner sc = new
-	// java.util.Scanner(this.getClass().getResourceAsStream(address));
-	//
-	// while (sc.hasNextLine()) {
-	//
-	// vastus.add(sc.nextLine());
-	// }
-	//
-	// sc.close();
-	//
-	// return vastus;
-	//
-	// } catch (Exception e) {
-	//
-	// return null;
-	// }
-	// }
 
 	public BufferedImage readImage(String aadress) {
 

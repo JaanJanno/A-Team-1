@@ -1,13 +1,8 @@
 package ee.ut.math.tvt.ateamplusone;
 
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import org.apache.log4j.Logger;
-
-/**
-* Log4j logger
-*/
 
 public class Intro extends JFrame{
 
@@ -17,12 +12,11 @@ public class Intro extends JFrame{
 	public Intro(){
 		
 		super();
-		this.setSize(0, 0);
 		this.setVisible(true);
-		
 		JPanel ui = new MainUI();
 		this.add(ui);
 
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(900, 400);
 	}
 
