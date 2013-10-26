@@ -23,7 +23,6 @@ public class Intro {
 			ConsoleUI cui = new ConsoleUI(domainController);
 			cui.run();
 		} else {
-			 log.debug("Something went wrong, displaying IntroUI");
 			IntroUI introUI = new IntroUI();
 			introUI.setVisible(true);
 			introUI.setAlwaysOnTop(true); 
