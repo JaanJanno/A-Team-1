@@ -3,16 +3,19 @@ package ee.ut.math.tvt.salessystem.ui.panels;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.NoSuchElementException;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,9 +31,10 @@ public class PurchaseItemPanel extends JPanel {
     private static final long serialVersionUID = 1L;
 
     // Text field on the dialogPane
+    private JComboBox<String> itemNameBox;
     private JTextField barCodeField;
     private JTextField quantityField;
-    private JTextField nameField;
+//    private JTextField nameField;
     private JTextField priceField;
 
     private JButton addItemButton;
@@ -84,20 +88,31 @@ public class PurchaseItemPanel extends JPanel {
         // Initialize the textfields
         barCodeField = new JTextField();
         quantityField = new JTextField("1");
-        nameField = new JTextField();
+//        nameField = new JTextField();
         priceField = new JTextField();
+        
+        // Dropdown menu to select products
+        itemNameBox = new JComboBox<String>();
+        fillItemNameBox();
 
         // Fill the dialog fields if the bar code text field loses focus
-        barCodeField.addFocusListener(new FocusListener() {
-            public void focusGained(FocusEvent e) {
-            }
-
-            public void focusLost(FocusEvent e) {
-                fillDialogFields();
-            }
+        itemNameBox.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+                fillDialogFields();				
+			}        	
         });
+//        barCodeField.addFocusListener(new FocusListener() {
+//            public void focusGained(FocusEvent e) {
+//            }
+//
+//            public void focusLost(FocusEvent e) {
+//                fillDialogFields();
+//            }
+//        });
 
-        nameField.setEditable(false);
+
+//        nameField.setEditable(false);
         priceField.setEditable(false);
 
         // == Add components to the panel
@@ -112,7 +127,8 @@ public class PurchaseItemPanel extends JPanel {
 
         // - name
         panel.add(new JLabel("Name:"));
-        panel.add(nameField);
+//        panel.add(nameField);
+        panel.add(itemNameBox);
 
         // - price
         panel.add(new JLabel("Price:"));
@@ -132,11 +148,28 @@ public class PurchaseItemPanel extends JPanel {
     }
 
     // Fill dialog with data from the "database".
+//    public void fillDialogFields() {
+//        StockItem stockItem = getStockItemByBarcode();
+//
+//        if (stockItem != null) {
+//            nameField.setText(stockItem.getName());
+//            String priceString = String.valueOf(stockItem.getPrice());
+//            priceField.setText(priceString);
+//        } else {
+//            reset();
+//        }
+//    }
+    
+    /**
+     * Fill dialog with data from the "database".
+     * @author Tõnis
+     */
+    // 
     public void fillDialogFields() {
-        StockItem stockItem = getStockItemByBarcode();
+        StockItem stockItem = getStockItemByName();
 
         if (stockItem != null) {
-            nameField.setText(stockItem.getName());
+        	barCodeField.setText(String.valueOf(stockItem.getId()));
             String priceString = String.valueOf(stockItem.getPrice());
             priceField.setText(priceString);
         } else {
@@ -146,10 +179,28 @@ public class PurchaseItemPanel extends JPanel {
 
     // Search the warehouse for a StockItem with the bar code entered
     // to the barCode textfield.
-    private StockItem getStockItemByBarcode() {
+//    private StockItem getStockItemByBarcode() {
+//        try {
+//            int code = Integer.parseInt(barCodeField.getText());
+//            return model.getWarehouseTableModel().getItemById(code);
+//        } catch (NumberFormatException ex) {
+//            return null;
+//        } catch (NoSuchElementException ex) {
+//            return null;
+//        }
+//    }
+    
+    /**
+     * Search the warehouse for a StockItem with the name selected 
+     * in the itemNameBox JComboBox
+     *  to the barCode textfield.
+     *  @author Tõnis
+     * @return item
+     */
+    private StockItem getStockItemByName() {
         try {
-            int code = Integer.parseInt(barCodeField.getText());
-            return model.getWarehouseTableModel().getItemById(code);
+        	String name = (String)itemNameBox.getSelectedItem();
+            return model.getWarehouseTableModel().getItemByName(name);
         } catch (NumberFormatException ex) {
             return null;
         } catch (NoSuchElementException ex) {
@@ -162,7 +213,7 @@ public class PurchaseItemPanel extends JPanel {
      */
     public void addItemEventHandler() {
         // add chosen item to the shopping cart.
-        StockItem stockItem = getStockItemByBarcode();
+    	StockItem stockItem = getStockItemByName();
         if (stockItem != null) {
             int quantity;
             try {
@@ -183,6 +234,7 @@ public class PurchaseItemPanel extends JPanel {
         this.addItemButton.setEnabled(enabled);
         this.barCodeField.setEnabled(enabled);
         this.quantityField.setEnabled(enabled);
+        this.itemNameBox.setEnabled(enabled);
     }
 
     /**
@@ -191,8 +243,19 @@ public class PurchaseItemPanel extends JPanel {
     public void reset() {
         barCodeField.setText("");
         quantityField.setText("1");
-        nameField.setText("");
+//        nameField.setText("");
         priceField.setText("");
+    }
+    
+    /**
+     * Fills the productNameBox with items from warehouse.
+     * @author Tõnis
+     */
+    private void fillItemNameBox() {
+    	for (StockItem item : model.getWarehouseTableModel().getTableRows()) {
+			itemNameBox.addItem(item.getName());
+		}
+    	
     }
 
     /*

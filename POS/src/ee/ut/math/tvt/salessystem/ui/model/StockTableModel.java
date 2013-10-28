@@ -72,4 +72,18 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 		return buffer.toString();
 	}
 
+	/**
+	 * Finds stock items by name.
+	 * @author Tõnis
+	 * @param name of item
+	 * @return
+	 */
+    public StockItem getItemByName(final String name) {
+        for (final StockItem item : rows) {
+            if (item.getName() == name)
+                return item;
+        }
+        throw new NoSuchElementException();
+    }
+
 }
