@@ -28,9 +28,9 @@
 		
 		<input message="Enter tag name..." addproperty="the_tag" />
 		
-		<git command="push">
+		<git command="tag">
 			<args>
-				<arg value="-a ${the_tag}" />
+				<arg value="${the_tag}" />
 			</args>
 		</git>
 	</target>
@@ -42,7 +42,7 @@
 		
 		<git command="add">
 			<args>
-				<arg value="a" />
+				<arg value="." />
 			</args>
 		</git>
 		
