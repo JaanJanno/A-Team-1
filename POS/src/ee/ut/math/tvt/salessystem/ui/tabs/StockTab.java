@@ -3,16 +3,14 @@ package ee.ut.math.tvt.salessystem.ui.tabs;
 import ee.ut.math.tvt.ateamplusone.Intro;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
-import ee.ut.math.tvt.salessystem.ui.model.StockTableModel;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.List;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -159,7 +157,7 @@ public class StockTab {
 					double price = Double.parseDouble(priceField.getText());
 					int quantity = Integer.parseInt(quantityField.getText());
 
-					java.util.List<StockItem> list = model
+					List<StockItem> list = model
 							.getWarehouseTableModel().getTableRows();
 					StockItem item = list.get(list.size() - 1);
 					long id = item.getId() + 1;
