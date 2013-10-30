@@ -5,11 +5,13 @@
     <property name="ECLIPSE_HOME" value="../../../../../usr/lib/eclipse"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.7"/>
-    <property name="source" value="1.7"/>
-	<property name="main" value="ee.ut.math.tvt.ateamplusone.Intro"  />
+	<property name="source" value="1.7"/>
+	
     <path id="POS.classpath">
         <pathelement location="bin"/>
         <pathelement location="lib/log4j-1.2.17.jar"/>
+    	<pathelement location="lib/jgoodies-looks-2.5.2.jar"/>
+        <pathelement location="lib/jgoodies-common-1.4.0.jar"/>
     </path>
 	
 	<macrodef name="git">
@@ -51,7 +53,6 @@
 	<target name="git_commit">
 		
 		<input message="Enter commit message..." addproperty="commit-message" />
-		<echo message="Commiting all changes with message ${commit-message}" />
 		
 		<git command="add">
 			<args>
@@ -74,7 +75,7 @@
 		</git>
 	</target>
 	
-    <target name="init">
+    <target name="init" depends="clean">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
@@ -96,7 +97,7 @@
 	    	<fileset dir="" includes="*.properties"  />
 	    	<fileset dir="" includes="*.png"  />
 	    	<manifest>
-	    		<attribute name="Main-Class" value="${main}" />
+	    		<attribute name="Main-Class" value="ee.ut.math.tvt.ateamplusone.Intro"/>
 	    	</manifest>
 	   </jar>
 	</target>  
@@ -104,42 +105,12 @@
     <target name="clean">
         <delete dir="bin"/>
     </target>
-	
-    <target depends="clean" name="cleanall"/>
-    <target depends="build-subprojects,build-project" name="build"/>
-    <target name="build-subprojects"/>
-    <target depends="init" name="build-project">
+			
+    <target depends="init" name="build">
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
             <classpath refid="POS.classpath"/>
         </javac>
     </target>
-    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
-    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
-        <copy todir="${ant.library.dir}">
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </copy>
-        <unzip dest="${ant.library.dir}">
-            <patternset includes="jdtCompilerAdapter.jar"/>
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </unzip>
-    </target>
-	
-    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
-        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
-        <antcall target="build"/>
-    </target>
-	
-    <target name="Intro (1)">
-        <java classname="${main}" failonerror="true" fork="yes">
-            <classpath refid="POS.classpath"/>
-        </java>
-    </target>
-	
-	<target name="runc" depends="build" description="Run the application (console)">
-		<java classname="ee.ut.math.tvt.ateamplusone.Intro" classpathref="test.classpath" fork="yes">
-			<arg value="console" />
-		</java>
-	</target>
 </project>
