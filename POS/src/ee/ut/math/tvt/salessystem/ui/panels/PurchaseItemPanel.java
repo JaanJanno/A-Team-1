@@ -164,7 +164,7 @@ public class PurchaseItemPanel extends JPanel {
 	/**
 	 * Fill dialog with data from the "database".
 	 * 
-	 * @author Tõnis
+	 * @author TÃµnis
 	 */
 	//
 	public void fillDialogFields() {
@@ -196,7 +196,7 @@ public class PurchaseItemPanel extends JPanel {
 	 * Search the warehouse for a StockItem with the name selected in the
 	 * itemNameBox JComboBox to the barCode textfield.
 	 * 
-	 * @author Tõnis
+	 * @author TÃµnis
 	 * @return item
 	 */
 	private StockItem getStockItemByName() {
@@ -271,7 +271,7 @@ public class PurchaseItemPanel extends JPanel {
 	/**
 	 * Fills the productNameBox with items from warehouse.
 	 * 
-	 * @author Tõnis
+	 * @author TÃµnis
 	 */
 	private void fillItemNameBox() {
 		for (StockItem item : model.getWarehouseTableModel().getTableRows()) {
