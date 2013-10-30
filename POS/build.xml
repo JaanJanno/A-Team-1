@@ -30,7 +30,7 @@
 		
 		<git command="push">
 			<args>
-				<arg value="${the_tag}" />
+				<arg value="-a ${the_tag}" />
 			</args>
 		</git>
 	</target>
@@ -42,7 +42,7 @@
 		
 		<git command="add">
 			<args>
-				<arg value="." />
+				<arg value="a" />
 			</args>
 		</git>
 		
