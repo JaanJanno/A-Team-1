@@ -171,6 +171,8 @@ public class PurchaseTab {
       domainController.submitCurrentPurchase(
           model.getCurrentPurchaseTableModel().getTableRows()
       );
+      HistoryTab.saveToHistory();
+      HistoryTab.DeleteTempHistory();
       endSale();
       model.getCurrentPurchaseTableModel().clear();
     } catch (VerificationFailedException e1) {

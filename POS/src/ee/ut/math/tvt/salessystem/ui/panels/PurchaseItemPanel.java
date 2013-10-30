@@ -3,6 +3,7 @@ package ee.ut.math.tvt.salessystem.ui.panels;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
+import ee.ut.math.tvt.salessystem.ui.tabs.HistoryTab;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -235,7 +236,8 @@ public class PurchaseItemPanel extends JPanel {
 			}
 			else {
 				model.getCurrentPurchaseTableModel().addItem(
-						new SoldItem(stockItem, quantity));				
+						new SoldItem(stockItem, quantity));
+				HistoryTab.addToHistory(new SoldItem(stockItem, quantity));
 			}
 
 		}
