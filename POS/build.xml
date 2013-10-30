@@ -11,12 +11,37 @@
         <pathelement location="lib/log4j-1.2.17.jar"/>
     </path>
 	
-	
-	
-	<target name="git_commit">
-
-		<input message = "tere"></input>
+	<macrodef name="git">
+		<attribute name="command" />
+		<attribute name="dir" default="" />
+		<element name="args" optional="true" />
+		<sequential>
+			<echo message="git @{command}" />
+			<exec executable="git" dir="@{dir}">
+			<arg value="@{command}" />
+			<args/>
+			</exec>
+		</sequential>
+	</macrodef>
+ 
+	<target name="git_commit" description="Commits all changes to version git">
 		
+		<input message="Enter commit message..." addproperty="commit-message" />
+		<echo message="Commiting all changes with message ${commit-message}" />
+		
+		<git command="add">
+			<args>
+				<arg value="." />
+			</args>
+		</git>
+		
+		<git command="commit">
+			<args>
+				<arg value="-am ${commit-message}" />
+			</args>
+		</git>
+		
+		<git command="push" />
 	</target>
 	
     <target name="init">
