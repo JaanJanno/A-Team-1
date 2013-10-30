@@ -43,7 +43,8 @@
 		
 		<input message="Enter git username" addproperty="user" />
 		<input message="Enter git password" addproperty="pass" />
-		<git command="push https://${user}:${pass}@github.com/JaanJanno/A-Team-1.git" />
+		<git command="push" />	
+		<git command="https://${user}:${pass}@github.com/JaanJanno/A-Team-1.git" />
 	</target>
 	
     <target name="init">
