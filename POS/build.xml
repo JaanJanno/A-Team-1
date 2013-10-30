@@ -23,8 +23,19 @@
 			</exec>
 		</sequential>
 	</macrodef>
+	
+	<target name="git_tag">
+		
+		<input message="Enter tag name..." addproperty="the_tag" />
+		
+		<git command="push">
+			<args>
+				<arg value="${the_tag}" />
+			</args>
+		</git>
+	</target>
  
-	<target name="git_commit" description="Commits all changes to version git">
+	<target name="git_commit">
 		
 		<input message="Enter commit message..." addproperty="commit-message" />
 		<echo message="Commiting all changes with message ${commit-message}" />
