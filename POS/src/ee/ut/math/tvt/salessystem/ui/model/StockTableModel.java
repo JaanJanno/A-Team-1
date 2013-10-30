@@ -74,7 +74,7 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 
 	/**
 	 * Finds stock items by name.
-	 * @author Tõnis
+	 * @author TÃµnis
 	 * @param name of item
 	 * @return
 	 */
