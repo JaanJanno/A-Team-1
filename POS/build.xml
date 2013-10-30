@@ -18,8 +18,8 @@
 		<sequential>
 			<echo message="git @{command}" />
 			<exec executable="git" dir="@{dir}">
-			<arg value="@{command}" />
-			<args/>
+				<arg value="@{command}" />
+				<args/>
 			</exec>
 		</sequential>
 	</macrodef>
@@ -43,7 +43,11 @@
 		
 		<input message="Enter git username" addproperty="user" />
 		<input message="Enter git password" addproperty="pass" />
-		<git command="git push https://${user}:${pass}@github.com/JaanJanno/A-Team-1.git"/>	
+		<git command="push">
+			<args>			
+				<arg value="https://${user}:${pass}@github.com/JaanJanno/A-Team-1.git" />
+			</args>
+		</git>
 	</target>
 	
     <target name="init">
