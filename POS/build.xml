@@ -1,14 +1,79 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project basedir="." default="run" name="POS">
+	
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../../../../usr/lib/eclipse"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.7"/>
     <property name="source" value="1.7"/>
+	<property name="main" value="ee.ut.math.tvt.ateamplusone.Intro"  />
     <path id="POS.classpath">
         <pathelement location="bin"/>
         <pathelement location="lib/log4j-1.2.17.jar"/>
     </path>
+	
+	<macrodef name="git">
+		<attribute name="command" />
+		<attribute name="dir" default="" />
+		<element name="args" optional="true" />
+		<sequential>
+			<echo message="git @{command}" />
+			<exec executable="git" dir="@{dir}">
+				<arg value="@{command}" />
+				<args/>
+			</exec>
+		</sequential>
+	</macrodef>
+	
+	<target name="git_tag">
+		
+		<input message="Enter tag name..." addproperty="the_tag" />
+		<input message="Enter tag comment..." addproperty="the_tag_comment" />
+		<input message="Enter git username" addproperty="user" />
+		<input message="Enter git password" addproperty="pass" />
+		
+		<git command="tag">
+			<args>
+				<arg value="${the_tag}" />
+				<arg value="-m" />
+				<arg value="${the_tag_comment}" />
+			</args>
+		</git>
+		
+		<git command="push">
+			<args>
+				<arg value="https://${user}:${pass}@github.com/JaanJanno/A-Team-1.git" />			
+				<arg value="${the_tag}" />			
+			</args>
+		</git>
+	</target>
+ 
+	<target name="git_commit">
+		
+		<input message="Enter commit message..." addproperty="commit-message" />
+		<echo message="Commiting all changes with message ${commit-message}" />
+		
+		<git command="add">
+			<args>
+				<arg value="." />
+			</args>
+		</git>
+		
+		<git command="commit">
+			<args>
+				<arg value="-am ${commit-message}" />
+			</args>
+		</git>
+		
+		<input message="Enter git username" addproperty="user" />
+		<input message="Enter git password" addproperty="pass" />
+		<git command="push">
+			<args>			
+				<arg value="https://${user}:${pass}@github.com/JaanJanno/A-Team-1.git" />
+			</args>
+		</git>
+	</target>
+	
     <target name="init">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
@@ -28,14 +93,18 @@
 	<target name="makejar" depends="build">
 	    <jar destfile="Ateamplusone.jar" basedir="bin/">
 	    	<zipgroupfileset dir="lib/" includes="*.jar"  />
+	    	<fileset dir="" includes="*.properties"  />
+	    	<fileset dir="" includes="*.png"  />
 	    	<manifest>
-	    		<attribute name="Main-Class" value="ee.ut.math.tvt.ateamplusone.Intro"/>
+	    		<attribute name="Main-Class" value="${main}" />
 	    	</manifest>
 	   </jar>
 	</target>  
+	
     <target name="clean">
         <delete dir="bin"/>
     </target>
+	
     <target depends="clean" name="cleanall"/>
     <target depends="build-subprojects,build-project" name="build"/>
     <target name="build-subprojects"/>
@@ -56,13 +125,21 @@
             <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
         </unzip>
     </target>
+	
     <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
+	
     <target name="Intro (1)">
-        <java classname="ee.ut.math.tvt.ateamplusone.Intro" failonerror="true" fork="yes">
+        <java classname="${main}" failonerror="true" fork="yes">
             <classpath refid="POS.classpath"/>
         </java>
     </target>
+	
+	<target name="runc" depends="build" description="Run the application (console)">
+		<java classname="ee.ut.math.tvt.ateamplusone.Intro" classpathref="test.classpath" fork="yes">
+			<arg value="console" />
+		</java>
+	</target>
 </project>
