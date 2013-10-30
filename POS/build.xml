@@ -13,7 +13,7 @@
     	<pathelement location="lib/jgoodies-looks-2.5.2.jar"/>
         <pathelement location="lib/jgoodies-common-1.4.0.jar"/>
     </path>
-	
+ 
 	<macrodef name="git">
 		<attribute name="command" />
 		<attribute name="dir" default="" />
@@ -85,10 +85,13 @@
     </target>
 	
 	<target name="run" depends="makejar" description="Run app">
-	     <exec executable="java">
-	       <arg value="-jar"/>
-	     	<arg value="Ateamplusone.jar"/>
-	     </exec>
+		<java
+			classname="ee.ut.math.tvt.ateamplusone.Intro"
+				classpathref="POS.classpath"
+				fork="yes">
+			<jvmarg value="-Xdebug" />
+			<jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=1044" />
+		</java>
 	</target>
 	
 	<target name="makejar" depends="build">
