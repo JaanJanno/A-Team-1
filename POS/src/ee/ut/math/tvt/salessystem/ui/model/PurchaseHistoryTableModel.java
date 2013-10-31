@@ -4,20 +4,16 @@ import java.util.NoSuchElementException;
 
 import org.apache.log4j.Logger;
 
+import ee.ut.math.tvt.salessystem.domain.data.HistoryItem;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
-import ee.ut.math.tvt.salessystem.domain.data.StockItem;
-import ee.ut.math.tvt.salessystem.ui.SalesSystemUI;
 
-/**
- * Purchase history details model.
- */
-public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
+public class PurchaseHistoryTableModel extends SalesSystemTableModel<SoldItem> {
 	private static final long serialVersionUID = 1L;
 
 	private static final Logger log = Logger
 			.getLogger(PurchaseInfoTableModel.class);
 
-	public PurchaseInfoTableModel() {
+	public PurchaseHistoryTableModel() {
 		super(new String[] { "Id", "Name", "Price", "Quantity", "Sum" });
 	}
 
@@ -91,18 +87,5 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 		return sum;
 	}
 	
-    /**
-     * Total quantity of the specified item in the cart.
-     * 
-     * @return quantity
-     * @author Juhan
-     */
-    public int getQuantity(StockItem item) {
-            try {
-                    SoldItem item2 = getItemById(item.getId());
-                    return item2.getQuantity();
-            } catch (NoSuchElementException e) {
-                    return 0;
-            }
-    }
+
 }

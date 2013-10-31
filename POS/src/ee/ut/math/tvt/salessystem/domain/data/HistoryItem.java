@@ -2,8 +2,9 @@ package ee.ut.math.tvt.salessystem.domain.data;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
-import ee.ut.math.tvt.salessystem.ui.model.PurchaseInfoTableModel;
+import ee.ut.math.tvt.salessystem.ui.model.PurchaseHistoryTableModel;
 
 /**
  * Holds date, time and sum of purchase along with the
@@ -16,16 +17,17 @@ import ee.ut.math.tvt.salessystem.ui.model.PurchaseInfoTableModel;
 public class HistoryItem implements DisplayableItem {
 
 	private Long id;
-	private double sum;
+	private double sum = 0;
 	private Date date;
-	private Calendar cal;
-	private PurchaseInfoTableModel cart;
+	private PurchaseHistoryTableModel cart;
+	private List<SoldItem> goods;
 
-	public HistoryItem(double sum, PurchaseInfoTableModel cart) {
-		this.sum = sum;
-		this.cart = cart;
+	public HistoryItem(List<SoldItem> goods) {
+		this.goods = goods;
 		this.date = new Date();
-		this.cal = Calendar.getInstance();
+		for (SoldItem soldItem : goods) {
+			sum += soldItem.getSum();
+		}
 	}
 
 	public double getSum() {
@@ -36,11 +38,7 @@ public class HistoryItem implements DisplayableItem {
 		return date;
 	}
 
-	public Calendar getCal() {
-		return cal;
-	}
-
-	public PurchaseInfoTableModel getCart() {
+	public PurchaseHistoryTableModel getCart() {
 		return cart;
 	}
 
@@ -52,7 +50,15 @@ public class HistoryItem implements DisplayableItem {
 	@Override
 	public String toString() {
 		return "HistoryItem [id=" + id + ", sum=" + sum + ", date=" + date
-				+ ", cal=" + cal + ", cart=" + cart + "]";
+				+ ", cart=" + cart + "]";
+	}
+
+	public List<SoldItem> getGoods() {
+		return goods;
+	}
+
+	public void setGoods(List<SoldItem> goods) {
+		this.goods = goods;
 	}
 
 }

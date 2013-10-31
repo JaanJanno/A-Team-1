@@ -171,16 +171,7 @@ public class PurchaseTab {
 				log.info("Payment was accepted");
 				log.debug("Contents of the current basket:\n"
 						+ model.getCurrentPurchaseTableModel());
-				List<SoldItem> currentPurchaseList = model.getCurrentPurchaseTableModel()
-						.getTableRows();
-				domainController.submitCurrentPurchase(currentPurchaseList);
-				for (SoldItem item : currentPurchaseList) {
-					StockItem warehouseQuantity = model
-							.getWarehouseTableModel().getItemByName(
-									item.getName());
-					warehouseQuantity.setQuantity(warehouseQuantity
-							.getQuantity() - item.getQuantity());
-				}
+				domainController.submitCurrentPurchase(model.getCurrentPurchaseTableModel().getTableRows());
 				endSale();
 				model.getCurrentPurchaseTableModel().clear();
 

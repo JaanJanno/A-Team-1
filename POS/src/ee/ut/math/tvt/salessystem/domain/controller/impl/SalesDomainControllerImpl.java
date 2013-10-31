@@ -5,8 +5,10 @@ import java.util.List;
 
 import ee.ut.math.tvt.salessystem.domain.exception.VerificationFailedException;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
+import ee.ut.math.tvt.salessystem.domain.data.HistoryItem;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
+import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 
 /**
  * Implementation of the sales domain controller.
@@ -20,6 +22,12 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 		// cannot buy chupa-chups
 		// throw new VerificationFailedException("Underaged!");
 		// XXX - Save purchase
+		
+		// Had to change historytablemodel to static to access it from here
+		HistoryItem e = new HistoryItem(goods);
+		SalesSystemModel.getCurrentHistoryTableModel().addItem(e);
+		
+		
 	}
 
 	public void cancelCurrentPurchase() throws VerificationFailedException {

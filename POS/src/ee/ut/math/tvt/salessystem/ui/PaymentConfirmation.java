@@ -183,8 +183,6 @@ public class PaymentConfirmation extends JDialog {
 	}
 
 	private void acceptButtonClicked() {
-		
-		//check if amount entered includes strings
 		boolean allnumbers = true;
 		if(amountField.getText().isEmpty()) {
 			allnumbers = false;
@@ -224,6 +222,9 @@ public class PaymentConfirmation extends JDialog {
 		@Override
 		public void insertUpdate(DocumentEvent e) {
 			try{
+
+
+
 				payment = ((Number) Double.parseDouble(amountField.getText()))
 						.doubleValue();
 				changePayment.setText(Double.toString(Double.parseDouble(amountField.getText()) - sum));
@@ -235,7 +236,12 @@ public class PaymentConfirmation extends JDialog {
 		@Override
 		public void removeUpdate(DocumentEvent e) {
 			if (amountField.getText().isEmpty() == false) {
+
+
 				try{
+
+
+
 					payment = ((Number) Double.parseDouble(amountField.getText()))
 							.doubleValue();
 					changePayment.setText(Double.toString(Double.parseDouble(amountField.getText()) - sum));
@@ -255,6 +261,9 @@ public class PaymentConfirmation extends JDialog {
 		@Override
 		public void changedUpdate(DocumentEvent e) {
 			try{
+
+
+
 				payment = ((Number) Double.parseDouble(amountField.getText()))
 						.doubleValue();
 				changePayment.setText(Double.toString(Double.parseDouble(amountField.getText()) - sum));
