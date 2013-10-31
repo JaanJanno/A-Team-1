@@ -4,6 +4,7 @@ import ee.ut.math.tvt.salessystem.domain.exception.VerificationFailedException;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 import ee.ut.math.tvt.salessystem.ui.panels.PurchaseItemPanel;
+import ee.ut.math.tvt.salessystem.ui.PaymentConfirmation;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
@@ -34,6 +35,8 @@ public class PurchaseTab {
   private PurchaseItemPanel purchasePane;
 
   private SalesSystemModel model;
+  
+  private PaymentConfirmation paymentConfirmation;
 
 
   public PurchaseTab(SalesDomainController controller,
@@ -131,8 +134,6 @@ public class PurchaseTab {
 
 
 
-
-
   /* === Event handlers for the menu buttons
    *     (get executed when the buttons are clicked)
    */
@@ -167,14 +168,22 @@ public class PurchaseTab {
   protected void submitPurchaseButtonClicked() {
     log.info("Sale complete");
     try {
-      log.debug("Contents of the current basket:\n" + model.getCurrentPurchaseTableModel());
-      domainController.submitCurrentPurchase(
-          model.getCurrentPurchaseTableModel().getTableRows()
-      );
-      HistoryTab.saveToHistory();
-      HistoryTab.DeleteTempHistory();
-      endSale();
-      model.getCurrentPurchaseTableModel().clear();
+    	// Create new screen
+    	paymentConfirmation = new PaymentConfirmation( null, true, model.getCurrentPurchaseTableModel().getSum());
+    	boolean accepted = paymentConfirmation.isAccepted();
+		if (accepted) {
+			log.info("Payment was accepted");
+			log.debug("Contents of the current basket:\n" + model.getCurrentPurchaseTableModel());
+			domainController.submitCurrentPurchase(
+			model.getCurrentPurchaseTableModel().getTableRows() );
+			HistoryTab.saveToHistory();
+      		HistoryTab.DeleteTempHistory();
+			endSale();
+			model.getCurrentPurchaseTableModel().clear();
+		}
+		else {
+			log.info("Payment cancelled");
+		}
     } catch (VerificationFailedException e1) {
       log.error(e1.getMessage());
     }
