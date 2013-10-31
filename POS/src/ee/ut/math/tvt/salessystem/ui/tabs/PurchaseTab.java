@@ -14,7 +14,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -171,7 +170,16 @@ public class PurchaseTab {
 				log.info("Payment was accepted");
 				log.debug("Contents of the current basket:\n"
 						+ model.getCurrentPurchaseTableModel());
-				domainController.submitCurrentPurchase(model.getCurrentPurchaseTableModel().getTableRows());
+				List<SoldItem> currentPurchaseList = model
+						.getCurrentPurchaseTableModel().getTableRows();
+				domainController.submitCurrentPurchase(currentPurchaseList);
+				for (SoldItem item : currentPurchaseList) {
+					StockItem warehouseQuantity = model
+							.getWarehouseTableModel().getItemByName(
+									item.getName());
+					warehouseQuantity.setQuantity(warehouseQuantity
+							.getQuantity() - item.getQuantity());
+				}
 				endSale();
 				model.getCurrentPurchaseTableModel().clear();
 
