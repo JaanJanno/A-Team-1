@@ -183,17 +183,30 @@ public class PaymentConfirmation extends JDialog {
 	}
 
 	private void acceptButtonClicked() {
-
-		// Checking if there is enough money entered
-		payment = ((Number) Double.parseDouble(amountField.getText()))
-				.doubleValue();
-		if ((payment - sum) >= 0) {
-			message.setText("Purchase accepted");
-			accepted = true;
-			setVisible(false);
-		} else {
+		boolean allnumbers = true;
+		if(amountField.getText().isEmpty()) {
+			allnumbers = false;
 			message.setText("Enter more money");
 		}
+	    for(int i = 0; i < amountField.getText().length(); i++) {
+	        if(!Character.isDigit(amountField.getText().charAt(i))) {
+	        	message.setText("Enter integers only");
+	        	allnumbers = false;
+	        }
+	    }
+	  
+	    if (allnumbers == true) {
+			// Checking if there is enough money entered
+			payment = ((Number) Double.parseDouble(amountField.getText()))
+					.doubleValue();
+			if ((payment - sum) >= 0) {
+				message.setText("Purchase accepted");
+				accepted = true;
+				setVisible(false);
+			} else {
+				message.setText("Enter more money");
+			}
+	    }
 
 	}
 
@@ -216,7 +229,7 @@ public class PaymentConfirmation extends JDialog {
 						.doubleValue();
 				changePayment.setText(Double.toString(Double.parseDouble(amountField.getText()) - sum));
 			}catch(NumberFormatException ex){ // handle your exception
-				ex.printStackTrace();
+				changePayment.setText("0");
 			}
 		}
 
@@ -233,7 +246,7 @@ public class PaymentConfirmation extends JDialog {
 							.doubleValue();
 					changePayment.setText(Double.toString(Double.parseDouble(amountField.getText()) - sum));
 				}catch(NumberFormatException ex){ // handle your exception
-					ex.printStackTrace();
+					changePayment.setText("0");
 				}
 			}
 			else {
@@ -255,7 +268,7 @@ public class PaymentConfirmation extends JDialog {
 						.doubleValue();
 				changePayment.setText(Double.toString(Double.parseDouble(amountField.getText()) - sum));
 			}catch(NumberFormatException ex){ // handle your exception
-				ex.printStackTrace();
+				changePayment.setText("0");
 			}
 		}
 
