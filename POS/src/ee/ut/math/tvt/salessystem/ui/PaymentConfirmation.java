@@ -24,7 +24,7 @@ import javax.swing.event.DocumentListener;
 /**
  * Purhase confirmation dialog
  * 
- * @author T�nis
+ * @author T?nis
  * 
  */
 public class PaymentConfirmation extends JDialog {
@@ -35,7 +35,7 @@ public class PaymentConfirmation extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private JLabel sumPayment;
 	private JTextField changePayment;
-	private JFormattedTextField amountField;
+	private JTextField amountField;
 	private JButton acceptPayment;
 	private JButton cancelPayment;
 	private NumberFormat amountFormat;
@@ -78,13 +78,13 @@ public class PaymentConfirmation extends JDialog {
 		message = new JLabel("");
 
 		// Necessary to only input numbers
-		amountFormat = NumberFormat.getNumberInstance();
-		amountField = new JFormattedTextField(amountFormat);
-		amountField.setValue(new Double(0));
+//		amountFormat = NumberFormat.getNumberInstance();
+		amountField = new JFormattedTextField();
+		amountField.setText("0");
 		amountField.setColumns(10);
-		lis = new Lis();
-		amountField.addPropertyChangeListener("value", lis);
+		//		lis = new Lis();
 
+		amountField.getDocument().addDocumentListener(new Dkuular());
 		amountField.getDocument().addDocumentListener(new DocumentListener() {
 
 			@Override
@@ -106,7 +106,7 @@ public class PaymentConfirmation extends JDialog {
 			public void warn() {
 				try {
 					if (Double.parseDouble(amountField.getText()) < 0) {
-						payment = ((Number) amountField.getValue())
+						payment = ((Number) Double.parseDouble(amountField.getText()))
 								.doubleValue();
 						changePayment.setText(Double.toString(payment - sum));
 
@@ -152,7 +152,7 @@ public class PaymentConfirmation extends JDialog {
 	 * Creates the Accept payment button
 	 * 
 	 * @return button
-	 * @author T�nis
+	 * @author T?nis
 	 */
 	private JButton createAcceptPaymentButton() {
 		JButton b = new JButton("Accept");
@@ -169,7 +169,7 @@ public class PaymentConfirmation extends JDialog {
 	 * Creates the Cancel payment button
 	 * 
 	 * @return button
-	 * @author T�nis
+	 * @author T?nis
 	 */
 	private JButton createCancelPaymentButton() {
 		JButton b = new JButton("Cancel");
@@ -183,8 +183,10 @@ public class PaymentConfirmation extends JDialog {
 	}
 
 	private void acceptButtonClicked() {
+
 		// Checking if there is enough money entered
-		payment = ((Number) amountField.getValue()).doubleValue();
+		payment = ((Number) Double.parseDouble(amountField.getText()))
+				.doubleValue();
 		if ((payment - sum) >= 0) {
 			message.setText("Purchase accepted");
 			accepted = true;
@@ -196,21 +198,80 @@ public class PaymentConfirmation extends JDialog {
 	}
 
 	private void cancelButtonClicked() {
+		amountField.setText("0");
+		changePayment.setText("0");
 		accepted = false;
 		setVisible(false);
 
 	}
+	class Dkuular implements DocumentListener {
 
-	private class Lis implements PropertyChangeListener {
-		/** Called when a field's "value" property changes. */
-		public void propertyChange(PropertyChangeEvent e) {
-			Object source = e.getSource();
-			if (source == amountField) {
-				payment = ((Number) amountField.getValue()).doubleValue();
-				changePayment.setText(Double.toString(payment - sum));
+		@Override
+		public void insertUpdate(DocumentEvent e) {
+			try{
+
+
+
+				payment = ((Number) Double.parseDouble(amountField.getText()))
+						.doubleValue();
+				changePayment.setText(Double.toString(Double.parseDouble(amountField.getText()) - sum));
+			}catch(NumberFormatException ex){ // handle your exception
+				ex.printStackTrace();
 			}
 		}
 
+		@Override
+		public void removeUpdate(DocumentEvent e) {
+			if (amountField.getText().isEmpty() == false) {
+
+
+				try{
+
+
+
+					payment = ((Number) Double.parseDouble(amountField.getText()))
+							.doubleValue();
+					changePayment.setText(Double.toString(Double.parseDouble(amountField.getText()) - sum));
+				}catch(NumberFormatException ex){ // handle your exception
+					ex.printStackTrace();
+				}
+			}
+			else {
+				changePayment.setText("0");
+			}
+		}
+
+
+
+
+
+		@Override
+		public void changedUpdate(DocumentEvent e) {
+			try{
+
+
+
+				payment = ((Number) Double.parseDouble(amountField.getText()))
+						.doubleValue();
+				changePayment.setText(Double.toString(Double.parseDouble(amountField.getText()) - sum));
+			}catch(NumberFormatException ex){ // handle your exception
+				ex.printStackTrace();
+			}
+		}
+
+
 	}
+	//	private class Lis implements PropertyChangeListener {
+	//		/** Called when a field's "value" property changes. */
+	//		public void propertyChange(PropertyChangeEvent e) {
+	//			Object source = e.getSource();
+	//			if (source == amountField) {
+	//					payment = ((Number) Double.parseDouble(amountField.getText()))
+	//							.doubleValue();
+	//				changePayment.setText(Double.toString(payment - sum));
+	//			}
+	//		}
+	//
+	//	}
 
 }
