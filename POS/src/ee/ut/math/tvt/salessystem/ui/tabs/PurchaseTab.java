@@ -164,8 +164,7 @@ public class PurchaseTab {
 				log.info("Payment was accepted");
 				log.debug("Contents of the current basket:\n"
 						+ model.getCurrentPurchaseTableModel());
-				domainController.submitCurrentPurchase(model
-						.getCurrentPurchaseTableModel().getTableRows());
+				domainController.submitCurrentPurchase(model.getCurrentPurchaseTableModel().getTableRows());
 				endSale();
 				model.getCurrentPurchaseTableModel().clear();
 			} else {
