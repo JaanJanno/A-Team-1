@@ -73,10 +73,11 @@ public class HistoryTab {
 			//Checks when a row on the history table has been selected.//
 		    @Override
 		    public void mouseClicked(java.awt.event.MouseEvent e) {
-		        Point p = e.getPoint();
-		        int rida = p.y;
+		    	
+		        JTable table = (JTable)e.getComponent();
+		        int row = table.rowAtPoint(e.getPoint());
 		        
-		        System.out.println(p);
+		        System.out.println(row);
 		    }
 		});
 
