@@ -224,15 +224,7 @@ public class PurchaseItemPanel extends JPanel {
 				quantity = 1;
 			}
 			if (quantity > stockItem.getQuantity()) {
-				// custom title, error icon
-				JOptionPane.showMessageDialog(
-						this.getRootPane(),
-						"It seems you want too much from our little shop. We only have "
-								+ Integer.toString(stockItem.getQuantity())
-								+ " of " + stockItem.getName()
-								+ ", while you wanted "
-								+ Integer.toString(quantity) + ".",
-						"Warehouse out of stock", JOptionPane.ERROR_MESSAGE);
+				overQuantityLimitError(stockItem, quantity);
 			} else {
 				model.getCurrentPurchaseTableModel().addItem(
 						new SoldItem(stockItem, quantity));
@@ -240,6 +232,16 @@ public class PurchaseItemPanel extends JPanel {
 			}
 
 		}
+	}
+
+	public void overQuantityLimitError(StockItem stockItem, int quantity) {
+		JOptionPane.showMessageDialog(
+				this.getRootPane(),
+				"It seems you want too much from our little shop. We only have "
+						+ Integer.toString(stockItem.getQuantity()) + " of "
+						+ stockItem.getName() + ", while you wanted "
+						+ Integer.toString(quantity) + ".",
+				"Warehouse out of stock", JOptionPane.ERROR_MESSAGE);
 	}
 
 	/**
