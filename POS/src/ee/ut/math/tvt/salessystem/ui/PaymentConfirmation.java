@@ -185,7 +185,7 @@ public class PaymentConfirmation extends JDialog {
 	private void acceptButtonClicked() {
 		// Checking if there is enough money entered
 		payment = ((Number) amountField.getValue()).doubleValue();
-		if ((payment - sum) > 0) {
+		if ((payment - sum) >= 0) {
 			message.setText("Purchase accepted");
 			accepted = true;
 			setVisible(false);
