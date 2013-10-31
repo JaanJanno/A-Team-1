@@ -28,9 +28,9 @@ public class IntroUI extends JFrame {
 
 		try {
 			application.load(this.getClass().getResourceAsStream(
-					"/application.properties"));
+					"application.properties"));
 			version.load(this.getClass().getResourceAsStream(
-					"/version.properties"));
+					"version.properties"));
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -38,7 +38,7 @@ public class IntroUI extends JFrame {
 			e.printStackTrace();
 		}
 
-		logo = readImage("/logo.png");
+		logo = readImage("logo.png");
 
 		JPanel panel = new SplashScreen();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
