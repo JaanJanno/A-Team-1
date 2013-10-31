@@ -4,7 +4,6 @@ import java.util.NoSuchElementException;
 
 import org.apache.log4j.Logger;
 
-import ee.ut.math.tvt.salessystem.domain.data.HistoryItem;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 
 public class PurchaseHistoryTableModel extends SalesSystemTableModel<SoldItem> {
@@ -55,9 +54,10 @@ public class PurchaseHistoryTableModel extends SalesSystemTableModel<SoldItem> {
 	}
 
 	/**
-	 * Add new StockItem to table.
+	 * Add new Solditem to table.
+	 * 
 	 */
-	
+
 	public void addItem(final SoldItem item) {
 		try {
 			SoldItem item2 = getItemById(item.getId());
@@ -71,9 +71,9 @@ public class PurchaseHistoryTableModel extends SalesSystemTableModel<SoldItem> {
 		}
 		fireTableDataChanged();
 	}
-	
+
 	/**
-	 * Total sum of all the items in Purchase table.
+	 * Total sum of all the items in Purchase history table.
 	 * 
 	 * @return sum
 	 * @author Tõnis
@@ -86,6 +86,5 @@ public class PurchaseHistoryTableModel extends SalesSystemTableModel<SoldItem> {
 
 		return sum;
 	}
-	
 
 }

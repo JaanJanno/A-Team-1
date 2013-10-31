@@ -5,15 +5,11 @@ import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
-import java.awt.Point;
-import java.util.ArrayList;
-
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
+
 import javax.swing.table.JTableHeader;
 
 import org.apache.log4j.Logger;
@@ -51,8 +47,6 @@ public class HistoryTab {
 		gc.weightx = 1.0d;
 		gc.weighty = 0d;
 
-		// panel.add(drawStockMenuPane(), gc);
-
 		gc.weighty = 1.0;
 		gc.fill = GridBagConstraints.BOTH;
 		panel.add(drawHistoryMainPane(), gc);
@@ -60,6 +54,7 @@ public class HistoryTab {
 		return panel;
 	}
 
+	// All purchases
 	private Component drawHistoryMainPane() {
 		JPanel panel = new JPanel();
 
@@ -98,7 +93,7 @@ public class HistoryTab {
 		return panel;
 	}
 
-	// table of the wareshouse stock
+	// table of the details of purchase
 	private Component drawHistorySecondPane() {
 		JPanel panel = new JPanel();
 
@@ -123,10 +118,10 @@ public class HistoryTab {
 		return panel;
 	}
 
+	// Fills the details table
 	private void updateTable(int row) {
 		HistoryItem h = SalesSystemModel.getCurrentHistoryTableModel()
 				.getTableRows().get(row);
-		log.info(h);
 		model.getCurrentPurchaseHistoryTableModel().populateWithData(
 				h.getGoods());
 		model.getCurrentPurchaseHistoryTableModel().fireTableDataChanged();

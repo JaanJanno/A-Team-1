@@ -3,7 +3,6 @@ package ee.ut.math.tvt.salessystem.ui.panels;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
-import ee.ut.math.tvt.salessystem.ui.tabs.HistoryTab;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -36,7 +35,6 @@ public class PurchaseItemPanel extends JPanel {
 	private static JComboBox<String> itemNameBox;
 	private JTextField barCodeField;
 	private JTextField quantityField;
-	// private JTextField nameField;
 	private JTextField priceField;
 
 	private JButton addItemButton;
@@ -90,7 +88,6 @@ public class PurchaseItemPanel extends JPanel {
 		// Initialize the textfields
 		barCodeField = new JTextField();
 		quantityField = new JTextField("1");
-		// nameField = new JTextField();
 		priceField = new JTextField();
 
 		// Dropdown menu to select products
@@ -104,14 +101,6 @@ public class PurchaseItemPanel extends JPanel {
 				fillDialogFields();
 			}
 		});
-		// barCodeField.addFocusListener(new FocusListener() {
-		// public void focusGained(FocusEvent e) {
-		// }
-		//
-		// public void focusLost(FocusEvent e) {
-		// fillDialogFields();
-		// }
-		// });
 
 		// nameField.setEditable(false);
 		priceField.setEditable(false);
@@ -128,7 +117,6 @@ public class PurchaseItemPanel extends JPanel {
 
 		// - name
 		panel.add(new JLabel("Name:"));
-		// panel.add(nameField);
 		panel.add(itemNameBox);
 
 		// - price
@@ -148,18 +136,6 @@ public class PurchaseItemPanel extends JPanel {
 		return panel;
 	}
 
-	// Fill dialog with data from the "database".
-	// public void fillDialogFields() {
-	// StockItem stockItem = getStockItemByBarcode();
-	//
-	// if (stockItem != null) {
-	// nameField.setText(stockItem.getName());
-	// String priceString = String.valueOf(stockItem.getPrice());
-	// priceField.setText(priceString);
-	// } else {
-	// reset();
-	// }
-	// }
 
 	/**
 	 * Fill dialog with data from the "database".
@@ -179,18 +155,6 @@ public class PurchaseItemPanel extends JPanel {
 		}
 	}
 
-	// Search the warehouse for a StockItem with the bar code entered
-	// to the barCode textfield.
-	// private StockItem getStockItemByBarcode() {
-	// try {
-	// int code = Integer.parseInt(barCodeField.getText());
-	// return model.getWarehouseTableModel().getItemById(code);
-	// } catch (NumberFormatException ex) {
-	// return null;
-	// } catch (NoSuchElementException ex) {
-	// return null;
-	// }
-	// }
 
 	/**
 	 * Search the warehouse for a StockItem with the name selected in the
@@ -231,7 +195,6 @@ public class PurchaseItemPanel extends JPanel {
 			} else {
 				model.getCurrentPurchaseTableModel().addItem(
 						new SoldItem(stockItem, quantity));
-				// HistoryTab.addToHistory(new SoldItem(stockItem, quantity));
 			}
 
 		}
@@ -255,7 +218,7 @@ public class PurchaseItemPanel extends JPanel {
 		this.addItemButton.setEnabled(enabled);
 		this.barCodeField.setEnabled(enabled);
 		this.quantityField.setEnabled(enabled);
-		this.itemNameBox.setEnabled(enabled);
+		itemNameBox.setEnabled(enabled);
 
 		// This is here because otherwise the user must select
 		// another product and then the first to buy the first one
@@ -268,7 +231,6 @@ public class PurchaseItemPanel extends JPanel {
 	public void reset() {
 		barCodeField.setText("");
 		quantityField.setText("1");
-		// nameField.setText("");
 		priceField.setText("");
 	}
 
