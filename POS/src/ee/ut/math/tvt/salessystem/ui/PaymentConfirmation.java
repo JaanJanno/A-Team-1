@@ -128,8 +128,8 @@ public class PaymentConfirmation extends JDialog {
 		add(new JLabel("Enter money here: "));
 		add(amountField);
 
-		add(new JLabel("Press enter to see change"));
-		add(new JLabel("")); // Empty label to make the layout nicer
+//		add(new JLabel("Please enter the amount of money you want to pay with"));
+//		add(new JLabel("")); // Empty label to make the layout nicer
 
 		add(acceptPayment);
 		add(cancelPayment);

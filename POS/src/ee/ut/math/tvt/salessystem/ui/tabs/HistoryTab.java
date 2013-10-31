@@ -4,10 +4,17 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+
+import java.awt.Point;
+import java.util.ArrayList;
+
+
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.JTableHeader;
 
 import org.apache.log4j.Logger;
@@ -57,6 +64,7 @@ public class HistoryTab {
 	private Component drawHistoryMainPane() {
 		JPanel panel = new JPanel();
 
+
 		JTable table = new JTable(
 				SalesSystemModel.getCurrentHistoryTableModel());
 
@@ -71,6 +79,9 @@ public class HistoryTab {
 
 				updateTable(row);
 			}
+
+
+
 		});
 
 		JTableHeader header = table.getTableHeader();
