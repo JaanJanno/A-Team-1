@@ -61,7 +61,7 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 	/**
 	 * Add new StockItem to table.
 	 */
-	
+
 	public void addItem(final SoldItem item) {
 		try {
 			SoldItem item2 = getItemById(item.getId());
@@ -75,7 +75,7 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 		}
 		fireTableDataChanged();
 	}
-	
+
 	/**
 	 * Total sum of all the items in Purchase table.
 	 * 
@@ -89,5 +89,20 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 		}
 
 		return sum;
+	}
+
+	/**
+	 * Total quantity of the specified item in the cart.
+	 * 
+	 * @return quantity
+	 * @author Juhan
+	 */
+	public int getQuantity(StockItem item) {
+		try {
+			SoldItem item2 = getItemById(item.getId());
+			return item2.getQuantity();
+		} catch (NoSuchElementException e) {
+			return 0;
+		}
 	}
 }
