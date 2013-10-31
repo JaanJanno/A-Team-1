@@ -19,6 +19,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -32,6 +33,7 @@ public class StockTab {
 	private JButton addItem;
 	private SalesSystemModel model;
 	private static final Logger log = Logger.getLogger(Intro.class);
+	final JFrame frame = new JFrame("Add a new item");
 
 	public StockTab(SalesSystemModel model) {
 		this.model = model;
@@ -116,7 +118,6 @@ public class StockTab {
 	 * @author Juhan
 	 */
 	public void addItemEventHandler() {
-		final JFrame frame = new JFrame("Add a new item");
 		frame.setLayout(new FlowLayout());
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -158,18 +159,43 @@ public class StockTab {
 					double price = Double.parseDouble(priceField.getText());
 					int quantity = Integer.parseInt(quantityField.getText());
 
-					List<StockItem> list = model.getWarehouseTableModel()
-							.getTableRows();
-					StockItem item = list.get(list.size() - 1);
-					long id = item.getId() + 1;
+					if (name.trim() == "") {
+						log.debug("You must enter a name for the new item.");
+					} else {
 
-					model.getWarehouseTableModel().addItem(
-							new StockItem(id, name, desc, price, quantity));
-					
-					PurchaseItemPanel.fillItemNameBox();
-					frame.setVisible(false);
-					frame.dispose();
+						List<StockItem> list = model.getWarehouseTableModel()
+								.getTableRows();
+						boolean alreadyExists = false;
+						for (StockItem item : list) {
+							if (item.getName().equals(name)) {
+								alreadyExists = true;
+							}
+						}
+						if (alreadyExists == false) {
+							StockItem item = list.get(list.size() - 1);
+							long id = item.getId() + 1;
+
+							model.getWarehouseTableModel().addItem(
+									new StockItem(id, name.trim(), desc, price,
+											quantity));
+
+							PurchaseItemPanel.fillItemNameBox();
+							frame.setVisible(false);
+							frame.dispose();
+						} else {
+							JOptionPane
+									.showMessageDialog(
+											frame,
+											"You have entered a product name which already exists.",
+											"Product name exists",
+											JOptionPane.ERROR_MESSAGE);
+						}
+						log.debug("You have entered a product name which already exists.");
+					}
 				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(frame,
+							("You have entered unsuitable attributes."),
+							"Unsuitable attributes", JOptionPane.ERROR_MESSAGE);
 					log.debug("You have entered unsuitable attributes.");
 				}
 			}
