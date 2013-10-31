@@ -83,6 +83,7 @@ public class SalesSystemUI extends JFrame {
 		tabbedPane.add("Point-of-sale", purchaseTab.draw());
 		tabbedPane.add("Warehouse", stockTab.draw());
 		tabbedPane.add("History", historyTab.draw());
+//		tabbedPane.add("History");
 
 		getContentPane().add(tabbedPane);
 	}

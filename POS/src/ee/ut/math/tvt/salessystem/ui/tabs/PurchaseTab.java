@@ -166,8 +166,6 @@ public class PurchaseTab {
 						+ model.getCurrentPurchaseTableModel());
 				domainController.submitCurrentPurchase(model
 						.getCurrentPurchaseTableModel().getTableRows());
-				HistoryTab.saveToHistory();
-				HistoryTab.DeleteTempHistory();
 				endSale();
 				model.getCurrentPurchaseTableModel().clear();
 			} else {

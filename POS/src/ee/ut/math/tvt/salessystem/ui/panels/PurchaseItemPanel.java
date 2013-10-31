@@ -236,7 +236,7 @@ public class PurchaseItemPanel extends JPanel {
 			} else {
 				model.getCurrentPurchaseTableModel().addItem(
 						new SoldItem(stockItem, quantity));
-				HistoryTab.addToHistory(new SoldItem(stockItem, quantity));
+//				HistoryTab.addToHistory(new SoldItem(stockItem, quantity));
 			}
 
 		}
