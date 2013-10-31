@@ -4,12 +4,15 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Point;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.JTableHeader;
 
 import org.apache.log4j.Logger;
@@ -64,6 +67,18 @@ public class HistoryTab {
 		JPanel panel = new JPanel();
 
 		JTable table = new JTable(model.getCurrentHistoryTableModel());
+		
+		table.addMouseListener(new java.awt.event.MouseAdapter() {
+			
+			//Checks when a row on the history table has been selected.//
+		    @Override
+		    public void mouseClicked(java.awt.event.MouseEvent e) {
+		        Point p = e.getPoint();
+		        int rida = p.y;
+		        
+		        System.out.println(p);
+		    }
+		});
 
 		JTableHeader header = table.getTableHeader();
 		header.setReorderingAllowed(false);
