@@ -90,7 +90,6 @@ public class StockTab {
 		JPanel panel = new JPanel();
 
 		JTable table = new JTable(model.getWarehouseTableModel());
-		log.debug(model.getWarehouseTableModel());
 
 		JTableHeader header = table.getTableHeader();
 		header.setReorderingAllowed(false);
@@ -112,6 +111,7 @@ public class StockTab {
 
 	/**
 	 * Function to add a new item to the warehouse.
+	 * 
 	 * @author Juhan
 	 */
 	public void addItemEventHandler() {
@@ -157,8 +157,8 @@ public class StockTab {
 					double price = Double.parseDouble(priceField.getText());
 					int quantity = Integer.parseInt(quantityField.getText());
 
-					List<StockItem> list = model
-							.getWarehouseTableModel().getTableRows();
+					List<StockItem> list = model.getWarehouseTableModel()
+							.getTableRows();
 					StockItem item = list.get(list.size() - 1);
 					long id = item.getId() + 1;
 
@@ -167,7 +167,7 @@ public class StockTab {
 					frame.setVisible(false);
 					frame.dispose();
 				} catch (Exception e1) {
-					log.debug(e1);
+					log.debug("You have entered unsuitable attributes.");
 				}
 			}
 		});

@@ -19,34 +19,34 @@ import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
  * labelled "History" in the menu).
  */
 public class HistoryTab {
-    
+
 	public static ArrayList<SoldItem> SoldItems = new ArrayList<SoldItem>();
 	private static SalesSystemModel model;
 	private JScrollPane scrollpane;
-	
-    // TODO - implement!
 
-    public HistoryTab(SalesSystemModel model) {
-    	this.model = model;
-    	JTable table = new JTable(model.getCurrentHistoryTableModel());
+	// TODO - implement!
+
+	public HistoryTab(SalesSystemModel model) {
+		this.model = model;
+		JTable table = new JTable(model.getCurrentHistoryTableModel());
 		scrollpane = new JScrollPane(table);
-    } 
-    
-    public static void addToHistory(SoldItem soldItem){
+	}
+
+	public static void addToHistory(SoldItem soldItem) {
 		SoldItems.add(soldItem);
 	}
-    
-    public static void saveToHistory(){
-    	for(int i = 0; i < SoldItems.size(); i++){
-    		model.getCurrentHistoryTableModel().addItem(SoldItems.get(i));
-    	}
-    }
-    
-    public static void DeleteTempHistory(){
+
+	public static void saveToHistory() {
+		for (int i = 0; i < SoldItems.size(); i++) {
+			model.getCurrentHistoryTableModel().addItem(SoldItems.get(i));
+		}
+	}
+
+	public static void DeleteTempHistory() {
 		SoldItems.clear();
 	}
-    
-    private GridBagConstraints getScrollPaneConstraints() {
+
+	private GridBagConstraints getScrollPaneConstraints() {
 		GridBagConstraints gc = new GridBagConstraints();
 
 		gc.fill = GridBagConstraints.BOTH;
@@ -55,17 +55,16 @@ public class HistoryTab {
 
 		return gc;
 	}
-    
-    public Component draw() {
-        JPanel panel = new JPanel();
-        
-        panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        panel.setLayout(new GridBagLayout());
-        panel.setBorder(BorderFactory.createTitledBorder("History"));
-        
-        panel.add(scrollpane,getScrollPaneConstraints());
-        
-        
-        return panel;
-    }
+
+	public Component draw() {
+		JPanel panel = new JPanel();
+
+		panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		panel.setLayout(new GridBagLayout());
+		panel.setBorder(BorderFactory.createTitledBorder("History"));
+
+		panel.add(scrollpane, getScrollPaneConstraints());
+
+		return panel;
+	}
 }

@@ -8,45 +8,48 @@ import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
  * Main model. Holds all the other models.
  */
 public class SalesSystemModel {
-    
-    private static final Logger log = Logger.getLogger(SalesSystemModel.class);
 
-    // Warehouse model
-    private StockTableModel warehouseTableModel;
-    
-    // Current shopping cart model
-    private PurchaseInfoTableModel currentPurchaseTableModel;
-    
-    private HistoryTableModel currentHistoryTableModel;
+	private static final Logger log = Logger.getLogger(SalesSystemModel.class);
 
-    private final SalesDomainController domainController;
+	// Warehouse model
+	private StockTableModel warehouseTableModel;
 
-    /**
-     * Construct application model.
-     * @param domainController Sales domain controller.
-     */
-    public SalesSystemModel(SalesDomainController domainController) {
-        this.domainController = domainController;
-        
-        warehouseTableModel = new StockTableModel();
-        currentPurchaseTableModel = new PurchaseInfoTableModel();
-        currentHistoryTableModel = new HistoryTableModel();
+	// Current shopping cart model
+	private PurchaseInfoTableModel currentPurchaseTableModel;
 
-        // populate stock model with data from the warehouse
-        warehouseTableModel.populateWithData(domainController.loadWarehouseState());
+	private HistoryTableModel currentHistoryTableModel;
 
-    }
+	private final SalesDomainController domainController;
 
-    public StockTableModel getWarehouseTableModel() {
-        return warehouseTableModel;
-    }
+	/**
+	 * Construct application model.
+	 * 
+	 * @param domainController
+	 *            Sales domain controller.
+	 */
+	public SalesSystemModel(SalesDomainController domainController) {
+		this.domainController = domainController;
 
-    public PurchaseInfoTableModel getCurrentPurchaseTableModel() {
-        return currentPurchaseTableModel;
-    }
-    
-    public HistoryTableModel getCurrentHistoryTableModel(){
-    	return currentHistoryTableModel;
-    }
-    
+		warehouseTableModel = new StockTableModel();
+		currentPurchaseTableModel = new PurchaseInfoTableModel();
+		currentHistoryTableModel = new HistoryTableModel();
+
+		// populate stock model with data from the warehouse
+		warehouseTableModel.populateWithData(domainController
+				.loadWarehouseState());
+
+	}
+
+	public StockTableModel getWarehouseTableModel() {
+		return warehouseTableModel;
+	}
+
+	public PurchaseInfoTableModel getCurrentPurchaseTableModel() {
+		return currentPurchaseTableModel;
+	}
+
+	public HistoryTableModel getCurrentHistoryTableModel() {
+		return currentHistoryTableModel;
+	}
+
 }

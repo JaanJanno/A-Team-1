@@ -13,7 +13,7 @@ public class Intro {
 	private static final String MODE = "console";
 
 	public static void main(String[] args) {
-		 log.debug("Creating screen");
+		log.debug("Creating screen");
 
 		final SalesDomainController domainController = new SalesDomainControllerImpl();
 
@@ -23,20 +23,20 @@ public class Intro {
 			ConsoleUI cui = new ConsoleUI(domainController);
 			cui.run();
 		} else {
-//			IntroUI introUI = new IntroUI();
-//			introUI.setVisible(true);
-//			introUI.setAlwaysOnTop(true); 
+			// IntroUI introUI = new IntroUI();
+			// introUI.setVisible(true);
+			// introUI.setAlwaysOnTop(true);
 
 			final SalesSystemUI ui = new SalesSystemUI(domainController);
 			ui.setVisible(true);
 
-//			 introUI.setAlwaysOnTop(false);
+			// introUI.setAlwaysOnTop(false);
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-//			introUI.setVisible(false);
+			// introUI.setVisible(false);
 		}
 	}
 }

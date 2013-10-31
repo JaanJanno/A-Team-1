@@ -23,7 +23,7 @@ import javax.swing.event.DocumentListener;
 /**
  * Purhase confirmation dialog
  * 
- * @author Tõnis
+ * @author Tï¿½nis
  * 
  */
 public class PaymentConfirmation extends JDialog {
@@ -44,14 +44,15 @@ public class PaymentConfirmation extends JDialog {
 		super(frame, modal);
 		this.sum = sum;
 		this.add(draw(), getDialogPaneConstraints());
-		 setTitle("Confirm purchase");
+		setTitle("Confirm purchase");
 		// pack();
-		
+
 		int width = 200;
 		int height = 180;
-	    Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-	    this.setLocation((screen.width - width) / 2, (screen.height - height) / 2);
-	    this.setSize(width, height);
+		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation((screen.width - width) / 2,
+				(screen.height - height) / 2);
+		this.setSize(width, height);
 		setVisible(true);
 	}
 
@@ -141,7 +142,7 @@ public class PaymentConfirmation extends JDialog {
 	 * Creates the Accept payment button
 	 * 
 	 * @return button
-	 * @author Tõnis
+	 * @author Tï¿½nis
 	 */
 	private JButton createAcceptPaymentButton() {
 		JButton b = new JButton("Accept");
@@ -158,7 +159,7 @@ public class PaymentConfirmation extends JDialog {
 	 * Creates the Cancel payment button
 	 * 
 	 * @return button
-	 * @author Tõnis
+	 * @author Tï¿½nis
 	 */
 	private JButton createCancelPaymentButton() {
 		JButton b = new JButton("Cancel");
@@ -196,7 +197,7 @@ public class PaymentConfirmation extends JDialog {
 		}
 
 	}
-	
+
 	private GridBagConstraints getDialogPaneConstraints() {
 		GridBagConstraints gc = new GridBagConstraints();
 

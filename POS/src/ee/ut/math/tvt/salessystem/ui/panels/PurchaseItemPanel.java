@@ -233,8 +233,7 @@ public class PurchaseItemPanel extends JPanel {
 								+ ", while you wanted "
 								+ Integer.toString(quantity) + ".",
 						"Warehouse out of stock", JOptionPane.ERROR_MESSAGE);
-			}
-			else {
+			} else {
 				model.getCurrentPurchaseTableModel().addItem(
 						new SoldItem(stockItem, quantity));
 				HistoryTab.addToHistory(new SoldItem(stockItem, quantity));
@@ -252,8 +251,8 @@ public class PurchaseItemPanel extends JPanel {
 		this.barCodeField.setEnabled(enabled);
 		this.quantityField.setEnabled(enabled);
 		this.itemNameBox.setEnabled(enabled);
-		
-		// This is here because otherwise the user must select 
+
+		// This is here because otherwise the user must select
 		// another product and then the first to buy the first one
 		fillDialogFields();
 	}
