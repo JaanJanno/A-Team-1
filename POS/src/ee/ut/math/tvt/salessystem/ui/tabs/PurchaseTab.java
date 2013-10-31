@@ -1,19 +1,26 @@
 package ee.ut.math.tvt.salessystem.ui.tabs;
 
+import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
+import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.domain.exception.VerificationFailedException;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 import ee.ut.math.tvt.salessystem.ui.panels.PurchaseItemPanel;
 import ee.ut.math.tvt.salessystem.ui.PaymentConfirmation;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -164,10 +171,19 @@ public class PurchaseTab {
 				log.info("Payment was accepted");
 				log.debug("Contents of the current basket:\n"
 						+ model.getCurrentPurchaseTableModel());
-				domainController.submitCurrentPurchase(model
-						.getCurrentPurchaseTableModel().getTableRows());
+				List<SoldItem> currentPurchaseList = model.getCurrentPurchaseTableModel()
+						.getTableRows();
+				domainController.submitCurrentPurchase(currentPurchaseList);
+				for (SoldItem item : currentPurchaseList) {
+					StockItem warehouseQuantity = model
+							.getWarehouseTableModel().getItemByName(
+									item.getName());
+					warehouseQuantity.setQuantity(warehouseQuantity
+							.getQuantity() - item.getQuantity());
+				}
 				endSale();
 				model.getCurrentPurchaseTableModel().clear();
+
 			} else {
 				log.info("Payment cancelled");
 			}

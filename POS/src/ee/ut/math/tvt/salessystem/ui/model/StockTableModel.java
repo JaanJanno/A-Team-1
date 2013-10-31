@@ -87,5 +87,7 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 		}
 		throw new NoSuchElementException();
 	}
+	
+	
 
 }
