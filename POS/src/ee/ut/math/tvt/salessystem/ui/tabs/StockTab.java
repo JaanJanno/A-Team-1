@@ -3,6 +3,7 @@ package ee.ut.math.tvt.salessystem.ui.tabs;
 import ee.ut.math.tvt.ateamplusone.Intro;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
+import ee.ut.math.tvt.salessystem.ui.panels.PurchaseItemPanel;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -164,6 +165,8 @@ public class StockTab {
 
 					model.getWarehouseTableModel().addItem(
 							new StockItem(id, name, desc, price, quantity));
+					
+					PurchaseItemPanel.fillItemNameBox();
 					frame.setVisible(false);
 					frame.dispose();
 				} catch (Exception e1) {

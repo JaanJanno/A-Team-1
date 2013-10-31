@@ -33,7 +33,7 @@ public class PurchaseItemPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	// Text field on the dialogPane
-	private JComboBox<String> itemNameBox;
+	private static JComboBox<String> itemNameBox;
 	private JTextField barCodeField;
 	private JTextField quantityField;
 	// private JTextField nameField;
@@ -42,7 +42,7 @@ public class PurchaseItemPanel extends JPanel {
 	private JButton addItemButton;
 
 	// Warehouse model
-	private SalesSystemModel model;
+	private static SalesSystemModel model;
 
 	/**
 	 * Constructs new purchase item panel.
@@ -277,11 +277,12 @@ public class PurchaseItemPanel extends JPanel {
 	 * 
 	 * @author Tõnis
 	 */
-	private void fillItemNameBox() {
+	public static void fillItemNameBox() {
+		System.out.println(model.getWarehouseTableModel().getTableRows());
+		itemNameBox.removeAllItems();
 		for (StockItem item : model.getWarehouseTableModel().getTableRows()) {
 			itemNameBox.addItem(item.getName());
 		}
-
 	}
 
 	/*
