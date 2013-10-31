@@ -154,7 +154,7 @@ public class PurchaseTab {
 
 	/** Event handler for the <code>submit purchase</code> event. */
 	protected void submitPurchaseButtonClicked() {
-		log.info("Sale complete");
+		log.info("Sale started");
 		try {
 			// Create new screen
 			paymentConfirmation = new PaymentConfirmation(null, true, model
@@ -176,6 +176,7 @@ public class PurchaseTab {
 		} catch (VerificationFailedException e1) {
 			log.error(e1.getMessage());
 		}
+		log.info("Sale complete");
 	}
 
 	/*

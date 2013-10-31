@@ -1,6 +1,7 @@
 package ee.ut.math.tvt.salessystem.ui;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
@@ -29,7 +30,7 @@ import javax.swing.event.DocumentListener;
 public class PaymentConfirmation extends JDialog {
 
 	private boolean accepted;
-	private double payment;
+	private double payment = 0;
 	private double sum;
 	private static final long serialVersionUID = 1L;
 	private JLabel sumPayment;
@@ -39,16 +40,17 @@ public class PaymentConfirmation extends JDialog {
 	private JButton cancelPayment;
 	private NumberFormat amountFormat;
 	private PropertyChangeListener lis;
+	private JLabel message;
 
 	public PaymentConfirmation(JFrame frame, boolean modal, double sum) {
 		super(frame, modal);
 		this.sum = sum;
-		this.add(draw(), getDialogPaneConstraints());
+		this.add(draw());
 		setTitle("Confirm purchase");
-		// pack();
+		pack();
 
-		int width = 200;
-		int height = 180;
+		int width = 300;
+		int height = 200;
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation((screen.width - width) / 2,
 				(screen.height - height) / 2);
@@ -58,7 +60,7 @@ public class PaymentConfirmation extends JDialog {
 
 	private JPanel draw() {
 		JPanel panel = new JPanel();
-		setLayout(new GridLayout(4, 2));
+		setLayout(new GridLayout(6, 2));
 
 		// Initialize the buttons
 		acceptPayment = createAcceptPaymentButton();
@@ -71,6 +73,9 @@ public class PaymentConfirmation extends JDialog {
 		sumPayment.setText(Double.toString(sum));
 		changePayment.setText("0");
 		changePayment.setEnabled(false);
+
+		// Warning message
+		message = new JLabel("");
 
 		// Necessary to only input numbers
 		amountFormat = NumberFormat.getNumberInstance();
@@ -123,8 +128,13 @@ public class PaymentConfirmation extends JDialog {
 		add(new JLabel("Enter money here: "));
 		add(amountField);
 
+		add(new JLabel("Press enter to see change"));
+		add(new JLabel("")); // Empty label to make the layout nicer
+
 		add(acceptPayment);
 		add(cancelPayment);
+
+		add(message);
 		return panel;
 
 	}
@@ -173,14 +183,19 @@ public class PaymentConfirmation extends JDialog {
 	}
 
 	private void acceptButtonClicked() {
-		// TODO close it instead of hiding
-		accepted = true;
-		setVisible(false);
+		// Checking if there is enough money entered
+		payment = ((Number) amountField.getValue()).doubleValue();
+		if ((payment - sum) > 0) {
+			message.setText("Purchase accepted");
+			accepted = true;
+			setVisible(false);
+		} else {
+			message.setText("Enter more money");
+		}
 
 	}
 
 	private void cancelButtonClicked() {
-		// TODO close it instead of hiding
 		accepted = false;
 		setVisible(false);
 
@@ -196,18 +211,6 @@ public class PaymentConfirmation extends JDialog {
 			}
 		}
 
-	}
-
-	private GridBagConstraints getDialogPaneConstraints() {
-		GridBagConstraints gc = new GridBagConstraints();
-
-		gc.anchor = GridBagConstraints.WEST;
-		gc.weightx = 0.2;
-		gc.weighty = 0d;
-		gc.gridwidth = GridBagConstraints.REMAINDER;
-		gc.fill = GridBagConstraints.NONE;
-
-		return gc;
 	}
 
 }
