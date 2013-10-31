@@ -223,12 +223,15 @@ public class PurchaseItemPanel extends JPanel {
 			} catch (NumberFormatException ex) {
 				quantity = 1;
 			}
-			if (quantity > stockItem.getQuantity()) {
+			int currentQuantity = model.getCurrentPurchaseTableModel()
+					.getQuantity(stockItem);
+			if (quantity > stockItem.getQuantity()
+					|| currentQuantity + quantity > stockItem.getQuantity()) {
 				overQuantityLimitError(stockItem, quantity);
 			} else {
 				model.getCurrentPurchaseTableModel().addItem(
 						new SoldItem(stockItem, quantity));
-//				HistoryTab.addToHistory(new SoldItem(stockItem, quantity));
+				// HistoryTab.addToHistory(new SoldItem(stockItem, quantity));
 			}
 
 		}
