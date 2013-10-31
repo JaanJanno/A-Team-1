@@ -8,7 +8,6 @@ import java.awt.GridBagLayout;
 import java.awt.Point;
 import java.util.ArrayList;
 
-
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -64,7 +63,6 @@ public class HistoryTab {
 	private Component drawHistoryMainPane() {
 		JPanel panel = new JPanel();
 
-
 		JTable table = new JTable(
 				SalesSystemModel.getCurrentHistoryTableModel());
 
@@ -79,8 +77,6 @@ public class HistoryTab {
 
 				updateTable(row);
 			}
-
-
 
 		});
 
