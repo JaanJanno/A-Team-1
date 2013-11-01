@@ -1,15 +1,10 @@
 package ee.ut.math.tvt.salessystem.ui;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.text.NumberFormat;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -24,7 +19,7 @@ import javax.swing.event.DocumentListener;
 /**
  * Purhase confirmation dialog
  * 
- * @author T?nis
+ * @author TKasekamp
  * 
  */
 public class PaymentConfirmation extends JDialog {
@@ -38,8 +33,6 @@ public class PaymentConfirmation extends JDialog {
 	private JTextField amountField;
 	private JButton acceptPayment;
 	private JButton cancelPayment;
-	private NumberFormat amountFormat;
-	private PropertyChangeListener lis;
 	private JLabel message;
 
 	public PaymentConfirmation(JFrame frame, boolean modal, double sum) {
@@ -60,65 +53,28 @@ public class PaymentConfirmation extends JDialog {
 
 	private JPanel draw() {
 		JPanel panel = new JPanel();
-		setLayout(new GridLayout(6, 2));
+		setLayout(new GridLayout(5, 2));
 
 		// Initialize the buttons
 		acceptPayment = createAcceptPaymentButton();
 		cancelPayment = createCancelPaymentButton();
 
 		// Sum from purchase table
-		// sumPayment.setText(Double.toString(model.getCurrentPurchaseTableModel().getSum()));
 		sumPayment = new JLabel();
-		changePayment = new JTextField();
 		sumPayment.setText(Double.toString(sum));
+
+		changePayment = new JTextField();
 		changePayment.setText("0");
 		changePayment.setEnabled(false);
+
+		amountField = new JFormattedTextField();
+		amountField.setText("0");
+		amountField.setColumns(10);
+		amountField.getDocument().addDocumentListener(new Dkuular());
 
 		// Warning message
 		message = new JLabel("");
 
-		// Necessary to only input numbers
-//		amountFormat = NumberFormat.getNumberInstance();
-		amountField = new JFormattedTextField();
-		amountField.setText("0");
-		amountField.setColumns(10);
-		//		lis = new Lis();
-
-		amountField.getDocument().addDocumentListener(new Dkuular());
-		amountField.getDocument().addDocumentListener(new DocumentListener() {
-
-			@Override
-			public void removeUpdate(DocumentEvent e) {
-				warn();
-			}
-
-			@Override
-			public void insertUpdate(DocumentEvent e) {
-				warn();
-
-			}
-
-			@Override
-			public void changedUpdate(DocumentEvent e) {
-				warn();
-			}
-
-			public void warn() {
-				try {
-					if (Double.parseDouble(amountField.getText()) < 0) {
-						payment = ((Number) Double.parseDouble(amountField.getText()))
-								.doubleValue();
-						changePayment.setText(Double.toString(payment - sum));
-
-					}
-				} catch (NumberFormatException e) {
-
-				}
-
-			}
-		});
-		// Add the buttons to the panel, using GridBagConstraints we defined
-		// above
 		add(new JLabel("Total: "));
 		add(sumPayment);
 
@@ -127,9 +83,6 @@ public class PaymentConfirmation extends JDialog {
 
 		add(new JLabel("Enter money here: "));
 		add(amountField);
-
-//		add(new JLabel("Please enter the amount of money you want to pay with"));
-//		add(new JLabel("")); // Empty label to make the layout nicer
 
 		add(acceptPayment);
 		add(cancelPayment);
@@ -152,7 +105,6 @@ public class PaymentConfirmation extends JDialog {
 	 * Creates the Accept payment button
 	 * 
 	 * @return button
-	 * @author T?nis
 	 */
 	private JButton createAcceptPaymentButton() {
 		JButton b = new JButton("Accept");
@@ -169,7 +121,6 @@ public class PaymentConfirmation extends JDialog {
 	 * Creates the Cancel payment button
 	 * 
 	 * @return button
-	 * @author T?nis
 	 */
 	private JButton createCancelPaymentButton() {
 		JButton b = new JButton("Cancel");
@@ -184,18 +135,18 @@ public class PaymentConfirmation extends JDialog {
 
 	private void acceptButtonClicked() {
 		boolean allnumbers = true;
-		if(amountField.getText().isEmpty()) {
+		if (amountField.getText().isEmpty()) {
 			allnumbers = false;
 			message.setText("Enter more money");
 		}
-	    for(int i = 0; i < amountField.getText().length(); i++) {
-	        if(!Character.isDigit(amountField.getText().charAt(i))) {
-	        	message.setText("Enter integers only");
-	        	allnumbers = false;
-	        }
-	    }
-	  
-	    if (allnumbers == true) {
+		for (int i = 0; i < amountField.getText().length(); i++) {
+			if (!Character.isDigit(amountField.getText().charAt(i))) {
+				message.setText("Enter integers only");
+				allnumbers = false;
+			}
+		}
+
+		if (allnumbers == true) {
 			// Checking if there is enough money entered
 			payment = ((Number) Double.parseDouble(amountField.getText()))
 					.doubleValue();
@@ -206,7 +157,7 @@ public class PaymentConfirmation extends JDialog {
 			} else {
 				message.setText("Enter more money");
 			}
-	    }
+		}
 
 	}
 
@@ -217,74 +168,44 @@ public class PaymentConfirmation extends JDialog {
 		setVisible(false);
 
 	}
+
+	/**
+	 * 
+	 * @author Silver
+	 * 
+	 */
 	class Dkuular implements DocumentListener {
 
 		@Override
 		public void insertUpdate(DocumentEvent e) {
-			try{
-
-
-
-				payment = ((Number) Double.parseDouble(amountField.getText()))
-						.doubleValue();
-				changePayment.setText(Double.toString(Double.parseDouble(amountField.getText()) - sum));
-			}catch(NumberFormatException ex){ // handle your exception
-				changePayment.setText("0");
-			}
+			update();
 		}
 
 		@Override
 		public void removeUpdate(DocumentEvent e) {
 			if (amountField.getText().isEmpty() == false) {
-
-
-				try{
-
-
-
-					payment = ((Number) Double.parseDouble(amountField.getText()))
-							.doubleValue();
-					changePayment.setText(Double.toString(Double.parseDouble(amountField.getText()) - sum));
-				}catch(NumberFormatException ex){ // handle your exception
-					changePayment.setText("0");
-				}
-			}
-			else {
+				update();
+			} else {
 				changePayment.setText("0");
 			}
 		}
-
-
-
-
 
 		@Override
 		public void changedUpdate(DocumentEvent e) {
-			try{
+			update();
+		}
 
-
+		private void update() {
+			try {
 
 				payment = ((Number) Double.parseDouble(amountField.getText()))
 						.doubleValue();
-				changePayment.setText(Double.toString(Double.parseDouble(amountField.getText()) - sum));
-			}catch(NumberFormatException ex){ // handle your exception
+				changePayment.setText(Double.toString(payment - sum));
+			} catch (NumberFormatException ex) { // handle your exception
 				changePayment.setText("0");
 			}
 		}
 
-
 	}
-	//	private class Lis implements PropertyChangeListener {
-	//		/** Called when a field's "value" property changes. */
-	//		public void propertyChange(PropertyChangeEvent e) {
-	//			Object source = e.getSource();
-	//			if (source == amountField) {
-	//					payment = ((Number) Double.parseDouble(amountField.getText()))
-	//							.doubleValue();
-	//				changePayment.setText(Double.toString(payment - sum));
-	//			}
-	//		}
-	//
-	//	}
 
 }
