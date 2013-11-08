@@ -4,9 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Holds date, time and sum of purchase along with the
- * <code> PurchaseInfoTableModel</code> instance that holds all the items
- * bought.
+ * Holds date, time and sum of purchase along with a List of SoldItems connected
+ * to this purchase.
  * 
  * @author TKasekamp
  * 
