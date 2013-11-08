@@ -8,7 +8,7 @@ import java.util.List;
  * to this purchase.
  * 
  * @author TKasekamp
- * 
+ * kommentaar
  */
 public class HistoryItem implements DisplayableItem {
 
