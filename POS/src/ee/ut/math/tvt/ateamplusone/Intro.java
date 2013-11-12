@@ -24,7 +24,7 @@ public class Intro {
 			cui.run();
 		} else {
 			IntroUI introUI = new IntroUI();
-			introUI.setVisible(true);
+			//introUI.setVisible(true);
 			introUI.setAlwaysOnTop(true);
 
 			final SalesSystemUI ui = new SalesSystemUI(domainController);
