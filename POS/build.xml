@@ -6,8 +6,8 @@
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.7"/>
 	<property name="source" value="1.7"/>
-	
 	<property name="lib.dir" value="${basedir}/lib"/>
+	
 	<!-- database variables -->
 	<property name="data.dir"	value="${basedir}/data"/>
 	<property name="db.file"	value="${data.dir}/POSdb"/>
@@ -32,19 +32,16 @@
 	        <fileset dir="${lib.dir}">
 	            <include name="*.jar"/>
 	        </fileset>
-
 	        <fileset dir="${lib.hibernate.dir}">
 	             <include name="*.jar"/>
 	        </fileset>
-
 	</path>
 	
 	<target name="dbmanager" description="Start the HSQLDB manager">
 	        <java
 	            classname="org.hsqldb.util.DatabaseManagerSwing"
 	            classpathref="run.classpath"
-	            fork="yes"
-	        >
+	            fork="yes">
 	            <arg line="--user sa --url ${db.url}" />
 	        </java>
 	    </target>
@@ -53,8 +50,7 @@
 	        <java
 	            classname="org.hsqldb.Server"
 	            classpathref="run.classpath"
-	            fork="yes"
-	        >
+	            fork="yes">
 	            <arg line="-database.0 '${db.file}' -dbname.0 '${db.alias}'" /> 
 	        </java>
 	</target>
@@ -64,6 +60,10 @@
         <pathelement location="lib/log4j-1.2.17.jar"/>
     	<pathelement location="lib/jgoodies-looks-2.5.2.jar"/>
         <pathelement location="lib/jgoodies-common-1.4.0.jar"/>
+    	<pathelement location="lib/hsqldb.jar"/>
+        <pathelement location="lib/xercesImpl.jar"/>
+    	<pathelement location="lib/xml-apis.jar"/>
+        <pathelement location="lib/hibernate"/>
     </path>
  
 	<macrodef name="git">
