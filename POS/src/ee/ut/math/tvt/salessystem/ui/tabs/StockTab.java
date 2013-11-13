@@ -1,6 +1,7 @@
 package ee.ut.math.tvt.salessystem.ui.tabs;
 
 import ee.ut.math.tvt.ateamplusone.Intro;
+import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 import ee.ut.math.tvt.salessystem.ui.panels.PurchaseItemPanel;
@@ -36,8 +37,10 @@ public class StockTab {
 	private SalesSystemModel model;
 	private static final Logger log = Logger.getLogger(Intro.class);
 	final JFrame frame = new JFrame("Add a new item");
-
-	public StockTab(SalesSystemModel model) {
+	private final SalesDomainController domainController;
+	
+	public StockTab(SalesDomainController controller, SalesSystemModel model) {
+		this.domainController = controller;
 		this.model = model;
 	}
 
@@ -178,11 +181,14 @@ public class StockTab {
 						if (alreadyExists == false) {
 							StockItem item = list.get(list.size() - 1);
 							long id = item.getId() + 1;
-
-							model.getWarehouseTableModel().addItem(
-									new StockItem(id, name.trim(), desc, price,
-											quantity));
-
+							
+							StockItem newItem = new StockItem(id, name.trim(), desc, price,
+									quantity);
+							model.getWarehouseTableModel().addItem(newItem
+									);
+							
+							// Adding to database
+							domainController.addToWarehouse(newItem);
 							PurchaseItemPanel.fillItemNameBox();
 							frame.setVisible(false);
 							frame.dispose();
