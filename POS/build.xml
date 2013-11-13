@@ -57,6 +57,7 @@
 	
     <path id="POS.classpath">
         <pathelement location="bin"/>
+    	<pathelement location="lib/commons-logging-1.1.1.jar"/>
         <pathelement location="lib/log4j-1.2.17.jar"/>
     	<pathelement location="lib/jgoodies-looks-2.5.2.jar"/>
         <pathelement location="lib/jgoodies-common-1.4.0.jar"/>
