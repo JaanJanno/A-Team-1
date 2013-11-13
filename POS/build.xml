@@ -65,6 +65,14 @@
         <pathelement location="lib/xercesImpl.jar"/>
     	<pathelement location="lib/xml-apis.jar"/>
         <pathelement location="lib/hibernate"/>
+    	
+    	<fileset dir="${lib.dir}">
+    		<include name="*.jar"/>
+    	</fileset>
+    	        
+    	<fileset dir="${lib.hibernate.dir}">
+    		<include name="*.jar"/>
+    	</fileset>
     </path>
  
 	<macrodef name="git">
