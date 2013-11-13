@@ -109,6 +109,7 @@ public class PaymentConfirmation extends JDialog {
 	private JButton createAcceptPaymentButton() {
 		JButton b = new JButton("Accept");
 		b.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				acceptButtonClicked();
 			}
@@ -125,6 +126,7 @@ public class PaymentConfirmation extends JDialog {
 	private JButton createCancelPaymentButton() {
 		JButton b = new JButton("Cancel");
 		b.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				cancelButtonClicked();
 			}

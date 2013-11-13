@@ -1,20 +1,42 @@
 package ee.ut.math.tvt.salessystem.domain.data;
 
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+
+
 /**
  * Stock item. Corresponds to the Data Transfer Object design pattern.
  */
+@Entity
+@Table(name = "STOCKITEM")
 public class StockItem implements Cloneable, DisplayableItem {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Don't know if necessary. TK
 	private Long id;
 
+    @Column(name = "name")
 	private String name;
 
+    @Column(name = "price")
 	private double price;
 
+    @Column(name = "description")
 	private String description;
 
+    @Column(name = "quantity")
 	private int quantity;
 
+    @OneToMany(mappedBy = "stockitem")
+    private Set<SoldItem> soldItems;
 	/**
 	 * Constucts new <code>StockItem</code> with the specified values.
 	 * 
@@ -73,6 +95,7 @@ public class StockItem implements Cloneable, DisplayableItem {
 		this.price = price;
 	}
 
+	@Override
 	public Long getId() {
 		return id;
 	}
@@ -89,6 +112,7 @@ public class StockItem implements Cloneable, DisplayableItem {
 		this.quantity = quantity;
 	}
 
+	@Override
 	public String toString() {
 		return id + " " + name + " " + description + " " + price;
 	}
@@ -113,10 +137,19 @@ public class StockItem implements Cloneable, DisplayableItem {
 		}
 	}
 
+	@Override
 	public Object clone() {
 		StockItem item = new StockItem(getId(), getName(), getDescription(),
 				getPrice(), getQuantity());
 		return item;
+	}
+
+	public Set<SoldItem> getSoldItems() {
+		return soldItems;
+	}
+
+	public void setSoldItems(Set<SoldItem> soldItems) {
+		this.soldItems = soldItems;
 	}
 
 }

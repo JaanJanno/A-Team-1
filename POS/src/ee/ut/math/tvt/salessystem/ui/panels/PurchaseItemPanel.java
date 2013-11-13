@@ -49,7 +49,7 @@ public class PurchaseItemPanel extends JPanel {
 	 *            composite model of the warehouse and the shopping cart.
 	 */
 	public PurchaseItemPanel(SalesSystemModel model) {
-		this.model = model;
+		PurchaseItemPanel.model = model;
 
 		setLayout(new GridBagLayout());
 
@@ -126,6 +126,7 @@ public class PurchaseItemPanel extends JPanel {
 		// Create and add the button
 		addItemButton = new JButton("Add to cart");
 		addItemButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				addItemEventHandler();
 			}

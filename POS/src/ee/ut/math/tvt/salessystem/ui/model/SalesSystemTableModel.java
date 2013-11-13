@@ -33,6 +33,7 @@ public abstract class SalesSystemTableModel<T extends DisplayableItem> extends
 	 */
 	protected abstract Object getColumnValue(T item, int columnIndex);
 
+	@Override
 	public int getColumnCount() {
 		return headers.length;
 	}
@@ -42,10 +43,12 @@ public abstract class SalesSystemTableModel<T extends DisplayableItem> extends
 		return headers[columnIndex];
 	}
 
+	@Override
 	public int getRowCount() {
 		return rows.size();
 	}
 
+	@Override
 	public Object getValueAt(final int rowIndex, final int columnIndex) {
 		return getColumnValue(rows.get(rowIndex), columnIndex);
 	}

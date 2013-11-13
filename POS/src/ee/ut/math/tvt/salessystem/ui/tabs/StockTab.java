@@ -24,6 +24,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 import javax.swing.table.JTableHeader;
 
 import org.apache.log4j.Logger;
@@ -79,6 +81,7 @@ public class StockTab {
 		gc.weightx = 1.0;
 		panel.add(addItem, gc);
 		addItem.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				addItemEventHandler();
 			}
@@ -120,7 +123,7 @@ public class StockTab {
 	public void addItemEventHandler() {
 		frame.setLayout(new FlowLayout());
 		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frame.setSize(300, 170);
 		JPanel panel1 = new JPanel();
 		JPanel panel2 = new JPanel();
@@ -134,10 +137,10 @@ public class StockTab {
 		final JTextField descField = new JTextField(20);
 		final JTextField priceField = new JTextField(20);
 		final JTextField quantityField = new JTextField(20);
-		JLabel nameLabel = new JLabel("Name:", JLabel.CENTER);
-		JLabel descLabel = new JLabel("Description:", JLabel.CENTER);
-		JLabel priceLabel = new JLabel("Price:", JLabel.CENTER);
-		JLabel quantityLabel = new JLabel("Quantity:", JLabel.CENTER);
+		JLabel nameLabel = new JLabel("Name:", SwingConstants.CENTER);
+		JLabel descLabel = new JLabel("Description:", SwingConstants.CENTER);
+		JLabel priceLabel = new JLabel("Price:", SwingConstants.CENTER);
+		JLabel quantityLabel = new JLabel("Quantity:", SwingConstants.CENTER);
 
 		panel1.add(nameLabel);
 		panel1.add(nameField);
@@ -152,6 +155,7 @@ public class StockTab {
 		frame.setVisible(true);
 
 		confirmButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
 					String name = nameField.getText();

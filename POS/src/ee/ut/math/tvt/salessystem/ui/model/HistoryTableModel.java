@@ -1,7 +1,7 @@
 package ee.ut.math.tvt.salessystem.ui.model;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+//import java.text.DateFormat;
+//import java.text.SimpleDateFormat;
 
 import org.apache.log4j.Logger;
 
@@ -12,8 +12,8 @@ import ee.ut.math.tvt.salessystem.domain.data.HistoryItem;
  */
 public class HistoryTableModel extends SalesSystemTableModel<HistoryItem> {
 	private static final long serialVersionUID = 1L;
-	private final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-	private final DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+//	private final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+//	private final DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 
 	private static final Logger log = Logger.getLogger(HistoryTableModel.class);
 
@@ -25,9 +25,9 @@ public class HistoryTableModel extends SalesSystemTableModel<HistoryItem> {
 	protected Object getColumnValue(HistoryItem item, int columnIndex) {
 		switch (columnIndex) {
 		case 0:
-			return dateFormat.format(item.getDate());
+			return item.getDate();
 		case 1:
-			return timeFormat.format(item.getDate());
+			return item.getTime();
 		case 2:
 			return item.getSum();
 		}
@@ -40,8 +40,8 @@ public class HistoryTableModel extends SalesSystemTableModel<HistoryItem> {
 	public void addItem(final HistoryItem item) {
 
 		rows.add(item);
-		log.debug("Purchase date: " + dateFormat.format(item.getDate())
-				+ ", time: " + timeFormat.format(item.getDate()));
+		log.debug("Purchase date: " + item.getDate()
+				+ ", time: " + item.getTime());
 		fireTableDataChanged();
 	}
 }
