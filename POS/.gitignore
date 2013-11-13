@@ -4,3 +4,4 @@ Ateamplusone.jar
 /log4j.log.1
 /data/POSdb.log
 /data/POSdb.lck
+/data/POSdb.properties
