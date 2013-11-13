@@ -28,15 +28,6 @@
 	        </fileset>
 	</path>
 	
-	<path id="compile.classpath">
-	        <fileset dir="${lib.dir}">
-	            <include name="*.jar"/>
-	        </fileset>
-	        <fileset dir="${lib.hibernate.dir}">
-	             <include name="*.jar"/>
-	        </fileset>
-	</path>
-	
 	<target name="dbmanager" description="Start the HSQLDB manager">
 	        <java
 	            classname="org.hsqldb.util.DatabaseManagerSwing"
@@ -56,16 +47,8 @@
 	</target>
 	
     <path id="POS.classpath">
-        <pathelement location="bin"/>
-    	<pathelement location="lib/commons-logging-1.1.1.jar"/>
-        <pathelement location="lib/log4j-1.2.17.jar"/>
-    	<pathelement location="lib/jgoodies-looks-2.5.2.jar"/>
-        <pathelement location="lib/jgoodies-common-1.4.0.jar"/>
-    	<pathelement location="lib/hsqldb.jar"/>
-        <pathelement location="lib/xercesImpl.jar"/>
-    	<pathelement location="lib/xml-apis.jar"/>
-        <pathelement location="lib/hibernate"/>
     	
+        <pathelement location="bin"/>
     	<fileset dir="${lib.dir}">
     		<include name="*.jar"/>
     	</fileset>
