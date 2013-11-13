@@ -53,9 +53,17 @@ public interface SalesDomainController {
 	
 	/**
 	 * Load the purchases saved in the database.
-	 * 
+	 * @author TKasekamp
 	 * @return List of ${link
 	 *         ee.ut.math.tvt.salessystem.domain.data.HistoryItem}s.
 	 */
 	public List<HistoryItem> loadHistory();
+	
+	/**
+	 * Load the purchase details in the database.
+	 * @author TKasekamp
+	 * @return List of ${link
+	 *         ee.ut.math.tvt.salessystem.domain.data.SoldItem}s.
+	 */	
+	public List<SoldItem> loadHistoryDetails();
 }

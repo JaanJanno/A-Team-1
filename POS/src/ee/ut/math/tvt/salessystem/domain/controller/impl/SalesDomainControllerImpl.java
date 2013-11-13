@@ -80,4 +80,11 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 		List<HistoryItem> dataset = session.createQuery("from HistoryItem").list();
 		return dataset;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<SoldItem> loadHistoryDetails() {
+		List<SoldItem> dataset = session.createQuery("from SoldItem").list();
+		return dataset;
+	}
 }
