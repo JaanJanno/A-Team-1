@@ -26,17 +26,16 @@ import javax.persistence.Table;
 @Table(name = "HISTORYITEM")
 public class HistoryItem implements Cloneable,DisplayableItem {
 
-	private final Format DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy");
-	private final DateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm:ss");
+	private static final Format DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy");
+	private static final DateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm:ss");
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private Long id;
+    @Column(name = "purchase_date")
+	private Date date;
     @Column(name = "total")
 	private double sum;
-    @Column(name = "date")
-	private Date date;
-//    private Timestamp date;
     @OneToMany(mappedBy = "historyItem")
 	private List<SoldItem> goods;
 
@@ -48,7 +47,7 @@ public class HistoryItem implements Cloneable,DisplayableItem {
 			sum += soldItem.getSum();
 		}
 	}
-
+	public HistoryItem() {};
 	public double getSum() {
 		return sum;
 	}
@@ -57,8 +56,7 @@ public class HistoryItem implements Cloneable,DisplayableItem {
 		return date == null ? "?" : DATE_FORMAT.format(date);
 	}
 	public String getTime() {
-//		return date == null ? "?" : TIME_FORMAT.format(date);
-		return "help";
+		return date == null ? "?" : TIME_FORMAT.format(date);
 	}	
 
 	@Override
