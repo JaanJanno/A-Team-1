@@ -23,7 +23,7 @@ import javax.persistence.Table;
  * @author TKasekamp
  */
 @Entity
-@Table(name = "HISTOTYITEM")
+@Table(name = "HISTORYITEM")
 public class HistoryItem implements Cloneable,DisplayableItem {
 
 	private final Format DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy");
@@ -32,11 +32,12 @@ public class HistoryItem implements Cloneable,DisplayableItem {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private Long id;
-    @Column(name = "sum")
+    @Column(name = "total")
 	private double sum;
     @Column(name = "date")
 	private Date date;
-    @OneToMany(mappedBy = "historyitem")
+//    private Timestamp date;
+    @OneToMany(mappedBy = "historyItem")
 	private List<SoldItem> goods;
 
 	public HistoryItem(List<SoldItem> goods) {
@@ -56,7 +57,8 @@ public class HistoryItem implements Cloneable,DisplayableItem {
 		return date == null ? "?" : DATE_FORMAT.format(date);
 	}
 	public String getTime() {
-		return date == null ? "?" : TIME_FORMAT.format(date);
+//		return date == null ? "?" : TIME_FORMAT.format(date);
+		return "help";
 	}	
 
 	@Override
