@@ -29,7 +29,7 @@ public class HistoryTableModel extends SalesSystemTableModel<HistoryItem> {
 		case 1:
 			return item.getTime();
 		case 2:
-			return item.getSum();
+			return Math.round(item.getSum()*100)/100.0;
 		}
 		throw new IllegalArgumentException("Column index out of range");
 	}
