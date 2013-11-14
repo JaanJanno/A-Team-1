@@ -199,8 +199,8 @@ public class StockTab {
 											"You have entered a product name which already exists.",
 											"Product name exists",
 											JOptionPane.ERROR_MESSAGE);
+							log.debug("You have entered a product name which already exists.");
 						}
-						log.debug("You have entered a product name which already exists.");
 					}
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(frame,
