@@ -39,11 +39,12 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 
 		for (SoldItem soldItem : goods) {
 			soldItem.setHistoryItem(e);
-//			changeStockItemQuantity(soldItem);
+			changeStockItemQuantity(soldItem);
 			session.save(soldItem);
+
+			session.save(e);
 		}
 
-		session.save(e);
 		session.getTransaction().commit();
 
 	}
@@ -61,7 +62,6 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<StockItem> loadWarehouseState() {
-		// XXX mock implementation
 		// List<StockItem> dataset = new ArrayList<StockItem>();
 		//
 		// StockItem chips = new StockItem(1l, "Lays chips", "Potato chips",

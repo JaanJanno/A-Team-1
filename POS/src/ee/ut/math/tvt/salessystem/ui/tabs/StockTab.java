@@ -178,7 +178,7 @@ public class StockTab {
 								alreadyExists = true;
 							}
 						}
-						if (alreadyExists == false) {
+						if (!alreadyExists) {
 							StockItem item = list.get(list.size() - 1);
 							long id = item.getId() + 1;
 							
