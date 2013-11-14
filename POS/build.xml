@@ -141,6 +141,7 @@
 	<target name="makejar" depends="build">
 	    <jar destfile="Ateamplusone.jar" basedir="bin/">
 	    	<zipgroupfileset dir="lib/" includes="*.jar"  />
+	    	<zipgroupfileset dir="lib/hibernate/" includes="*.jar"  />
 	    	<fileset dir="" includes="*.properties"  />
 	    	<fileset dir="" includes="*.png"  />
 	    	<manifest>
