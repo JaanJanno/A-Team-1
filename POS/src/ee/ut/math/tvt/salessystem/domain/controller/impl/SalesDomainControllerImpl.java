@@ -1,6 +1,5 @@
 package ee.ut.math.tvt.salessystem.domain.controller.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -119,22 +118,14 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 		session.getTransaction().commit();
 
 	}
-
-	@SuppressWarnings("unchecked")
+	
 	@Override
-	public void changeStockItemQuantity(StockItem stockItem, boolean change) {
-		// CURRENTLY UNUSED
-		int a;
-		if (change) {
-			a = 1;
-		} else {
-			a = -1;
-		}
-		// I know it will only return one quantity
-		List<Integer> b = session.createQuery(
+	public void changeStockItemQuantity(StockItem stockItem, int quantity) {
+
+		session.createQuery(
 				"select quantity from StockItem where id ="
 						+ Long.toString(stockItem.getId())).list();
-		stockItem.setQuantity(stockItem.getQuantity() + a * b.get(0));
+		stockItem.setQuantity(stockItem.getQuantity() + quantity);
 
 		session.getTransaction().begin();
 		session.update(stockItem);
@@ -150,6 +141,8 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 				"select quantity from StockItem where id ="
 						+ Long.toString(id_a)).list();
 		int difference = b.get(0) - soldItem.getQuantity();
+		System.out.println(b.get(0));
+		System.out.println(soldItem.getQuantity());
 		session.createQuery("update StockItem set quantity = "+ Integer.toString(difference) + " where id = " + Long.toString(id_a)).executeUpdate();
 		
 	}

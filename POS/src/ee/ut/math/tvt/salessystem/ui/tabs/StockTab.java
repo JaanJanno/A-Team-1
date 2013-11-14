@@ -38,6 +38,7 @@ public class StockTab {
 	private static final Logger log = Logger.getLogger(Intro.class);
 	final JFrame frame = new JFrame("Add a new item");
 	private final SalesDomainController domainController;
+	StockItem stockitem;
 	
 	public StockTab(SalesDomainController controller, SalesSystemModel model) {
 		this.domainController = controller;
@@ -162,8 +163,6 @@ public class StockTab {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					String name = nameField.getText();
-					String desc = descField.getText();
-					double price = Double.parseDouble(priceField.getText());
 					int quantity = Integer.parseInt(quantityField.getText());
 
 					if (name.trim() == "") {
@@ -176,9 +175,12 @@ public class StockTab {
 						for (StockItem item : list) {
 							if (item.getName().equals(name)) {
 								alreadyExists = true;
+								stockitem=item;
 							}
 						}
 						if (!alreadyExists) {
+							String desc = descField.getText();
+							double price = Double.parseDouble(priceField.getText());
 							StockItem item = list.get(list.size() - 1);
 							long id = item.getId() + 1;
 							
@@ -193,13 +195,11 @@ public class StockTab {
 							frame.setVisible(false);
 							frame.dispose();
 						} else {
-							JOptionPane
-									.showMessageDialog(
-											frame,
-											"You have entered a product name which already exists.",
-											"Product name exists",
-											JOptionPane.ERROR_MESSAGE);
-							log.debug("You have entered a product name which already exists.");
+							domainController.changeStockItemQuantity(stockitem, quantity);
+							PurchaseItemPanel.fillItemNameBox();
+							frame.setVisible(false);
+							frame.dispose();
+							log.debug("Quantity of "+name+" increased by "+quantity+".");
 						}
 					}
 				} catch (Exception e1) {
@@ -207,6 +207,7 @@ public class StockTab {
 							("You have entered unsuitable attributes."),
 							"Unsuitable attributes", JOptionPane.ERROR_MESSAGE);
 					log.debug("You have entered unsuitable attributes.");
+					log.debug(e1);
 				}
 			}
 		});

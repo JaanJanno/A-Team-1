@@ -79,6 +79,6 @@ public interface SalesDomainController {
 	 * @param change true increases, false decreases the value
 	 * @author TKasekamp
 	 */
-	public void changeStockItemQuantity(StockItem stockItem, boolean change);
 	public void changeStockItemQuantity(SoldItem soldItem);
+	public void changeStockItemQuantity(StockItem stockItem, int quantity);
 }
