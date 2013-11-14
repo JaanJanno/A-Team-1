@@ -142,18 +142,18 @@ public class StockTab {
 		final JTextField priceField = new JTextField(20);
 		final JTextField quantityField = new JTextField(20);
 		JLabel nameLabel = new JLabel("Name:", SwingConstants.CENTER);
-		JLabel descLabel = new JLabel("Description:", SwingConstants.CENTER);
-		JLabel priceLabel = new JLabel("Price:", SwingConstants.CENTER);
 		JLabel quantityLabel = new JLabel("Quantity:", SwingConstants.CENTER);
+		JLabel priceLabel = new JLabel("Price:", SwingConstants.CENTER);
+		JLabel descLabel = new JLabel("Description:", SwingConstants.CENTER);
 
 		panel1.add(nameLabel);
 		panel1.add(nameField);
-		panel1.add(descLabel);
-		panel1.add(descField);
-		panel1.add(priceLabel);
-		panel1.add(priceField);
 		panel1.add(quantityLabel);
 		panel1.add(quantityField);
+		panel1.add(priceLabel);
+		panel1.add(priceField);
+		panel1.add(descLabel);
+		panel1.add(descField);
 
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
