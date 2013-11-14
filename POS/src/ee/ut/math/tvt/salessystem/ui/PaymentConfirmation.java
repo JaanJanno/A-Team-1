@@ -202,7 +202,7 @@ public class PaymentConfirmation extends JDialog {
 
 				payment = ((Number) Double.parseDouble(amountField.getText()))
 						.doubleValue();
-				changePayment.setText(Double.toString(Math.round(payment - sum)));
+				changePayment.setText(Double.toString(Math.round((payment - sum)*100)/100.0));
 			} catch (NumberFormatException ex) { // handle your exception
 				changePayment.setText("0");
 			}
