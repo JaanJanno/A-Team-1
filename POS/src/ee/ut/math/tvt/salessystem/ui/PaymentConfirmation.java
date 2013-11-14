@@ -172,8 +172,8 @@ public class PaymentConfirmation extends JDialog {
 	}
 
 	/**
+	 * Updates return amount in confirmation window.
 	 * 
-	 * @author Silver
 	 * 
 	 */
 	class Dkuular implements DocumentListener {
