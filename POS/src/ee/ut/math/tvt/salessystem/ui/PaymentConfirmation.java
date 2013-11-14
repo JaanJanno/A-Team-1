@@ -61,7 +61,7 @@ public class PaymentConfirmation extends JDialog {
 
 		// Sum from purchase table
 		sumPayment = new JLabel();
-		sumPayment.setText(Double.toString(Math.round((sum*100))/100.0));
+		sumPayment.setText(Double.toString(Math.round(sum*100)/100.0));
 
 		changePayment = new JTextField();
 		changePayment.setText("0");
