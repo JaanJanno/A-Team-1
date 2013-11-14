@@ -121,12 +121,8 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 	
 	@Override
 	public void changeStockItemQuantity(StockItem stockItem, int quantity) {
-
-		session.createQuery(
-				"select quantity from StockItem where id ="
-						+ Long.toString(stockItem.getId())).list();
 		stockItem.setQuantity(stockItem.getQuantity() + quantity);
-
+		
 		session.getTransaction().begin();
 		session.update(stockItem);
 		session.getTransaction().commit();
@@ -141,8 +137,6 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 				"select quantity from StockItem where id ="
 						+ Long.toString(id_a)).list();
 		int difference = b.get(0) - soldItem.getQuantity();
-		System.out.println(b.get(0));
-		System.out.println(soldItem.getQuantity());
 		session.createQuery("update StockItem set quantity = "+ Integer.toString(difference) + " where id = " + Long.toString(id_a)).executeUpdate();
 		
 	}
