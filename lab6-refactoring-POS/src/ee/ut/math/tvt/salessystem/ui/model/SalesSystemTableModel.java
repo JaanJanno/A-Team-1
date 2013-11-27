@@ -16,10 +16,12 @@ public abstract class SalesSystemTableModel<T extends DisplayableItem> extends
 
     private static final long serialVersionUID = 1L;
 
+    protected List<T> rows;
     protected final String[] headers;
 
     public SalesSystemTableModel(final String[] headers) {
         this.headers = headers;
+        rows = new ArrayList<T>();
     }
 
     /**
@@ -41,34 +43,26 @@ public abstract class SalesSystemTableModel<T extends DisplayableItem> extends
     }
 
     public int getRowCount() {
-        return getTableRows().size();
+        return rows.size();
     }
 
     public Object getValueAt(final int rowIndex, final int columnIndex) {
-        return getColumnValue(getTableRows().get(rowIndex), columnIndex);
+        return getColumnValue(rows.get(rowIndex), columnIndex);
     }
 
     // search for item with the specified id
     public T getItemById(final long id) {
-        for (final T item : getTableRows()) {
+        for (final T item : rows) {
             if (item.getId() == id)
                 return item;
         }
         throw new NoSuchElementException();
     }
 
-    public abstract List<T> getTableRows();
+    public List<T> getTableRows() {
+        return rows;
+    }
 
-    public T getRow(int index) {
-        return getTableRows().get(index);
-    }
-    
-    public List<T> getRows() {
-        return getTableRows();
-    }
-    
-    
-    //These need to be implemented at a new location.
     public void clear() {
         rows = new ArrayList<T>();
         fireTableDataChanged();
@@ -83,4 +77,13 @@ public abstract class SalesSystemTableModel<T extends DisplayableItem> extends
         rows.add(row);
         fireTableDataChanged();
     }
+    
+    public T getRow(int index) {
+        return rows.get(index);
+    }
+    
+    public List<T> getRows() {
+        return rows;
+    }
+    
 }

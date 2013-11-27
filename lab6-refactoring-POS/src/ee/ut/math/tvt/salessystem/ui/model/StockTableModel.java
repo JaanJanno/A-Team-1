@@ -1,6 +1,5 @@
 package ee.ut.math.tvt.salessystem.ui.model;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.apache.log4j.Logger;
@@ -57,7 +56,7 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 	
 	
 	public boolean hasEnoughInStock(StockItem item, int quantity) {
-	    for(StockItem i : getTableRows()) {
+	    for(StockItem i : this.rows) {
 	        if (i.getId().equals(item.getId())) {
 	            return (i.getQuantity() >= quantity);
 	        }
@@ -66,7 +65,7 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 	}
 	
 	public boolean validateNameUniqueness(String newName) {
-	    for (StockItem item : getTableRows()) {
+	    for (StockItem item : rows) {
 	        log.debug(" === Comparing: " + newName + " vs. " + item.getName());
 	        
 	        if (newName.equals(item.getName())) {
@@ -85,7 +84,7 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 			buffer.append(headers[i] + "\t");
 		buffer.append("\n");
 
-		for (final StockItem stockItem : getTableRows()) {
+		for (final StockItem stockItem : rows) {
 			buffer.append(stockItem.getId() + "\t");
 			buffer.append(stockItem.getName() + "\t");
 			buffer.append(stockItem.getPrice() + "\t");
@@ -94,12 +93,6 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 		}
 
 		return buffer.toString();
-	}
-
-	@Override
-	public List<StockItem> getTableRows() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
