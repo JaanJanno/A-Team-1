@@ -2,6 +2,7 @@ package ee.ut.math.tvt.salessystem.ui.model;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import ee.ut.math.tvt.salessystem.domain.data.Sale;
 
@@ -40,13 +41,18 @@ public class PurchaseHistoryTableModel extends SalesSystemTableModel<Sale> {
 			buffer.append(headers[i] + "\t");
 		buffer.append("\n");
 
-		for (final Sale sale : rows) {
+		for (final Sale sale : getTableRows()) {
 			buffer.append(sale.getId() + "\t");
-			//buffer.append(sale.getClient() != null ? sale.getClient().getFirstName() : "" + "\t");
 			buffer.append(sale.getSum() + "\t");
 			buffer.append("\n");
 		}
 
 		return buffer.toString();
+	}
+
+	@Override
+	public List<Sale> getTableRows() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
