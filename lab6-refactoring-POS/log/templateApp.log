@@ -1,11 +1,40 @@
-2009-10-18 16:20:54,517 [main] DEBUG - Strating SalesSystem with the Swing UI ..
-2009-10-18 16:20:54,985 [main] INFO - 4 items loaded from disk
-2009-10-18 16:20:55,001 [main] INFO - 1 clients loaded from disk
-2009-10-18 16:20:55,016 [main] INFO - 7 Sales loaded from disk
-2009-10-18 16:20:55,859 [main] INFO - SalesSystem started
-2009-10-18 16:22:11,270 [AWT-EventQueue-0] DEBUG -  === Comparing: kohv vs. Layz kr�psud
-2009-10-18 16:22:11,270 [AWT-EventQueue-0] DEBUG -  === Comparing: kohv vs. �lle vorstikesed
-2009-10-18 16:22:11,270 [AWT-EventQueue-0] DEBUG -  === Comparing: kohv vs. P�hklid
-2009-10-18 16:22:11,286 [AWT-EventQueue-0] DEBUG -  === Comparing: kohv vs. K�rsikud 
-2009-10-18 16:22:11,332 [AWT-EventQueue-0] INFO - Added new stockItem : kohv
-2009-10-18 16:22:16,200 [AWT-EventQueue-0] INFO - SalesSystem closed
+2013-11-27 17:29:06,830 [main] DEBUG - Strating SalesSystem with the Swing UI ..
+2013-11-27 17:29:07,169 [main] INFO - 5 items loaded from disk
+2013-11-27 17:29:07,177 [main] INFO - 1 clients loaded from disk
+2013-11-27 17:29:07,198 [main] INFO - 8 Sales loaded from disk
+2013-11-27 17:29:07,209 [main] WARN - [The JGoodies Windows Look and Feel - © 2001-2006 JGoodies Karsten Lentzsch - com.jgoodies.looks.windows.WindowsLookAndFeel] not supported on this platform
+2013-11-27 17:29:07,525 [main] INFO - SalesSystem started
+2013-11-27 17:29:50,665 [AWT-EventQueue-0] INFO - New sale process started
+2013-11-27 17:29:50,665 [AWT-EventQueue-0] INFO - New purchase started
+2013-11-27 17:29:50,672 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-27 17:29:52,263 [AWT-EventQueue-0] INFO - Client Toomas with ID=1 got selected.
+2013-11-27 17:29:56,399 [AWT-EventQueue-0] DEBUG - Added Õlle vorstikesed quantity of 10
+2013-11-27 17:29:59,305 [AWT-EventQueue-0] DEBUG - Added kohv quantity of 1
+2013-11-27 17:30:11,227 [AWT-EventQueue-0] INFO - Sale complete
+2013-11-27 17:30:11,227 [AWT-EventQueue-0] DEBUG - Contents of the current basket:
+Id	Name	Price	Quantity	Sum	
+null	Õlle vorstikesed	15.0	10	150.0	
+null	kohv	19.0	1	19.0	
+
+2013-11-27 17:32:15,853 [AWT-EventQueue-0] DEBUG -  === Comparing: Tere piim vs. Layz krõpsud
+2013-11-27 17:32:15,853 [AWT-EventQueue-0] DEBUG -  === Comparing: Tere piim vs. Õlle vorstikesed
+2013-11-27 17:32:15,853 [AWT-EventQueue-0] DEBUG -  === Comparing: Tere piim vs. Pähklid
+2013-11-27 17:32:15,854 [AWT-EventQueue-0] DEBUG -  === Comparing: Tere piim vs. Kõrsikud 
+2013-11-27 17:32:15,854 [AWT-EventQueue-0] DEBUG -  === Comparing: Tere piim vs. kohv
+2013-11-27 17:32:15,865 [AWT-EventQueue-0] INFO - Added new stockItem : Tere piim
+2013-11-27 17:32:26,923 [AWT-EventQueue-0] DEBUG -  === Comparing: kohv vs. Layz krõpsud
+2013-11-27 17:32:26,923 [AWT-EventQueue-0] DEBUG -  === Comparing: kohv vs. Õlle vorstikesed
+2013-11-27 17:32:26,923 [AWT-EventQueue-0] DEBUG -  === Comparing: kohv vs. Pähklid
+2013-11-27 17:32:26,923 [AWT-EventQueue-0] DEBUG -  === Comparing: kohv vs. Kõrsikud 
+2013-11-27 17:32:26,923 [AWT-EventQueue-0] DEBUG -  === Comparing: kohv vs. kohv
+2013-11-27 17:32:41,319 [AWT-EventQueue-0] INFO - New sale process started
+2013-11-27 17:32:41,319 [AWT-EventQueue-0] INFO - New purchase started
+2013-11-27 17:32:41,327 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-27 17:32:42,782 [AWT-EventQueue-0] INFO - Client Toomas with ID=1 got selected.
+2013-11-27 17:32:46,983 [AWT-EventQueue-0] DEBUG - Added Tere piim quantity of 1
+2013-11-27 17:32:52,687 [AWT-EventQueue-0] INFO - Sale complete
+2013-11-27 17:32:52,687 [AWT-EventQueue-0] DEBUG - Contents of the current basket:
+Id	Name	Price	Quantity	Sum	
+null	Tere piim	13.7	1	13.7	
+
+2013-11-27 18:15:34,491 [AWT-EventQueue-0] INFO - SalesSystem closed
