@@ -138,6 +138,12 @@
 		</java>
 	</target>
 	
+	<target name="runc" depends="build" description="Run the application (console)">
+		<java classname="ee.ut.math.tvt.ateamplusone.Intro" classpathref="POS.classpath" fork="yes">
+			<arg value="console" />
+		</java>
+	</target>
+	
 	<target name="makejar" depends="build">
 	    <jar destfile="Ateamplusone.jar" basedir="bin/">
 	    	<zipgroupfileset dir="lib/" includes="*.jar"  />
