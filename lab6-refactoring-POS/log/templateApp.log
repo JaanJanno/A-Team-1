@@ -1,16 +1,18 @@
-2013-11-27 22:55:05,892 [main] DEBUG - Strating SalesSystem with the Swing UI ..
-2013-11-27 22:55:06,483 [main] INFO - 6 items loaded from disk
-2013-11-27 22:55:06,499 [main] INFO - 1 clients loaded from disk
-2013-11-27 22:55:06,521 [main] INFO - 10 Sales loaded from disk
-2013-11-27 22:55:06,534 [main] WARN - [The JGoodies Windows Look and Feel - © 2001-2006 JGoodies Karsten Lentzsch - com.jgoodies.looks.windows.WindowsLookAndFeel] not supported on this platform
-2013-11-27 22:55:06,879 [main] INFO - SalesSystem started
-2013-11-27 22:55:11,137 [AWT-EventQueue-0] INFO - New sale process started
-2013-11-27 22:55:11,137 [AWT-EventQueue-0] INFO - New purchase started
-2013-11-27 22:55:11,149 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-27 22:55:13,485 [AWT-EventQueue-0] INFO - Client Toomas with ID=1 got selected.
-2013-11-27 22:55:27,600 [AWT-EventQueue-0] DEBUG -  === Comparing: kohv vs. Layz krõpsud
-2013-11-27 22:55:27,600 [AWT-EventQueue-0] DEBUG -  === Comparing: kohv vs. Õlle vorstikesed
-2013-11-27 22:55:27,600 [AWT-EventQueue-0] DEBUG -  === Comparing: kohv vs. Pähklid
-2013-11-27 22:55:27,601 [AWT-EventQueue-0] DEBUG -  === Comparing: kohv vs. Kõrsikud 
-2013-11-27 22:55:27,601 [AWT-EventQueue-0] DEBUG -  === Comparing: kohv vs. kohv
-2013-11-27 22:55:31,564 [AWT-EventQueue-0] INFO - SalesSystem closed
+2013-11-28 02:29:49,876 [main] DEBUG - Strating SalesSystem with the Swing UI ..
+2013-11-28 02:29:50,218 [main] INFO - 7 items loaded from disk
+2013-11-28 02:29:50,230 [main] INFO - 1 clients loaded from disk
+2013-11-28 02:29:50,253 [main] INFO - 14 Sales loaded from disk
+2013-11-28 02:29:50,276 [main] WARN - [The JGoodies Windows Look and Feel - © 2001-2006 JGoodies Karsten Lentzsch - com.jgoodies.looks.windows.WindowsLookAndFeel] not supported on this platform
+2013-11-28 02:29:50,590 [main] INFO - SalesSystem started
+2013-11-28 02:30:07,531 [AWT-EventQueue-0] INFO - New sale process started
+2013-11-28 02:30:07,532 [AWT-EventQueue-0] INFO - New purchase started
+2013-11-28 02:30:07,539 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
+2013-11-28 02:30:08,837 [AWT-EventQueue-0] INFO - Client Toomas with ID=1 got selected.
+2013-11-28 02:30:16,806 [AWT-EventQueue-0] DEBUG - Added Layz krõpsud quantity of 1
+2013-11-28 02:30:18,265 [AWT-EventQueue-0] DEBUG - Found existing item Layz krõpsud increased quantity by 1
+2013-11-28 02:30:27,601 [AWT-EventQueue-0] INFO - Sale complete
+2013-11-28 02:30:27,602 [AWT-EventQueue-0] DEBUG - Contents of the current basket:
+Id	Name	Price	Quantity	Sum	
+null	Layz krõpsud	10.5	2	21.0	
+
+2013-11-28 02:30:36,059 [AWT-EventQueue-0] INFO - SalesSystem closed

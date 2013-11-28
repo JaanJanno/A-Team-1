@@ -1,9 +1,9 @@
 package ee.ut.math.tvt.salessystem.ui.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
-
 import org.apache.log4j.Logger;
-
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 
 /**
@@ -11,11 +11,14 @@ import ee.ut.math.tvt.salessystem.domain.data.StockItem;
  */
 public class StockTableModel extends SalesSystemTableModel<StockItem> {
 	private static final long serialVersionUID = 1L;
+	
+	protected List<StockItem> rows;
 
 	private static final Logger log = Logger.getLogger(StockTableModel.class);
 
 	public StockTableModel() {
 		super(new String[] {"Id", "Name", "Price", "Quantity"});
+		rows = new ArrayList<StockItem>();
 	}
 
 	@Override
@@ -93,6 +96,24 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 		}
 
 		return buffer.toString();
+	}
+
+	@Override
+	public List<StockItem> getTableRows() {
+		// TODO Auto-generated method stub
+		return rows;
+	}
+
+	@Override
+	public void populateWithData(List<StockItem> data) {
+		rows.clear();
+        rows.addAll(data);
+	}
+
+	@Override
+	public void addRow(StockItem row) {
+		rows.add(row);
+        fireTableDataChanged();
 	}
 
 }
