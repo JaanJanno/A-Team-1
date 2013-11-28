@@ -12,7 +12,6 @@ import ee.ut.math.tvt.salessystem.domain.exception.OverLimitException;
  */
 public class StockTableModel extends SalesSystemTableModel<StockItem> {
 	private static final long serialVersionUID = 1L;
-
 	private static final Logger log = Logger.getLogger(StockTableModel.class);
 
 	public StockTableModel() {
@@ -57,11 +56,9 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 	@Override
 	public String toString() {
 		final StringBuffer buffer = new StringBuffer();
-
 		for (int i = 0; i < headers.length; i++)
 			buffer.append(headers[i] + "\t");
 		buffer.append("\n");
-
 		for (final StockItem stockItem : rows) {
 			buffer.append(stockItem.getId() + "\t");
 			buffer.append(stockItem.getName() + "\t");
@@ -69,7 +66,6 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 			buffer.append(stockItem.getQuantity() + "\t");
 			buffer.append("\n");
 		}
-
 		return buffer.toString();
 	}
 
@@ -97,7 +93,6 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 	 *            of item
 	 * @param quantity
 	 *            of item
-	 * @return
 	 */
 	public void hasEnoughInStock(final String name, int quantity)
 			throws OverLimitException {
@@ -106,6 +101,5 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 			throw new OverLimitException("Not enough of " + name
 					+ " in stock. Quantity exceeded by "
 					+ (quantity - item.getQuantity()) + ".");
-
 	}
 }

@@ -18,31 +18,33 @@ import javax.persistence.Table;
 public class SoldItem implements Cloneable, DisplayableItem {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-    @ManyToOne
-    @JoinColumn(name = "stockitem_id", nullable = true)
+	@ManyToOne
+	@JoinColumn(name = "stockitem_id", nullable = true)
 	private StockItem stockItem;
-    @ManyToOne
-    @JoinColumn(name = "historyitem_id", nullable = true)
+	@ManyToOne
+	@JoinColumn(name = "historyitem_id", nullable = true)
 	private HistoryItem historyItem;
-	
-    @Column(name = "name")
+
+	@Column(name = "name")
 	private String name;
-    @Column(name = "quantity")
+	@Column(name = "quantity")
 	private Integer quantity;
-    @Column(name = "price")
+	@Column(name = "price")
 	private double price;
 
 	public SoldItem(StockItem stockItem, int quantity) {
 		this.stockItem = stockItem;
-		this.id=stockItem.getId();
+		this.id = stockItem.getId();
 		this.name = stockItem.getName();
 		this.price = stockItem.getPrice();
 		this.quantity = quantity;
-
 	}
-	public SoldItem() {};
+
+	public SoldItem() {
+	};
+
 	@Override
 	public Long getId() {
 		return id;

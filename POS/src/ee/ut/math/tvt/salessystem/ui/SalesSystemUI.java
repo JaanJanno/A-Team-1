@@ -20,17 +20,10 @@ import org.apache.log4j.Logger;
  * Graphical user interface of the sales system.
  */
 public class SalesSystemUI extends JFrame {
-
 	private static final long serialVersionUID = 1L;
-
 	private static final Logger log = Logger.getLogger(SalesSystemUI.class);
-
 	private final SalesDomainController domainController;
-
-	// Warehouse model
 	private SalesSystemModel model;
-
-	// Instances of tab classes
 	private PurchaseTab purchaseTab;
 	private HistoryTab historyTab;
 	private StockTab stockTab;
@@ -44,25 +37,18 @@ public class SalesSystemUI extends JFrame {
 	public SalesSystemUI(final SalesDomainController domainController) {
 		this.domainController = domainController;
 		this.model = new SalesSystemModel(domainController);
-
-		// Create singleton instances of the tab classes
 		historyTab = new HistoryTab(model);
-		stockTab = new StockTab(domainController,model);
+		stockTab = new StockTab(domainController, model);
 		purchaseTab = new PurchaseTab(domainController, model);
-
 		setTitle("Sales system");
-
-		// set L&F to the nice Windows style
 		try {
 			UIManager.setLookAndFeel(new WindowsLookAndFeel());
 
 		} catch (UnsupportedLookAndFeelException e1) {
 			log.warn(e1.getMessage());
 		}
-
 		drawWidgets();
 
-		// size & location
 		int width = 600;
 		int height = 400;
 		setSize(width, height);
@@ -80,12 +66,9 @@ public class SalesSystemUI extends JFrame {
 
 	private void drawWidgets() {
 		JTabbedPane tabbedPane = new JTabbedPane();
-
 		tabbedPane.add("Point-of-sale", purchaseTab.draw());
 		tabbedPane.add("Warehouse", stockTab.draw());
 		tabbedPane.add("History", historyTab.draw());
-
 		getContentPane().add(tabbedPane);
 	}
-
 }

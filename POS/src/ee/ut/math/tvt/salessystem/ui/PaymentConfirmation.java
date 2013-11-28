@@ -23,7 +23,6 @@ import javax.swing.event.DocumentListener;
  * 
  */
 public class PaymentConfirmation extends JDialog {
-
 	private boolean accepted;
 	private double payment = 0;
 	private double sum;
@@ -41,7 +40,6 @@ public class PaymentConfirmation extends JDialog {
 		this.add(draw());
 		setTitle("Confirm purchase");
 		pack();
-
 		int width = 300;
 		int height = 200;
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -54,39 +52,26 @@ public class PaymentConfirmation extends JDialog {
 	private JPanel draw() {
 		JPanel panel = new JPanel();
 		setLayout(new GridLayout(5, 2));
-
-		// Initialize the buttons
 		acceptPayment = createAcceptPaymentButton();
 		cancelPayment = createCancelPaymentButton();
-
-		// Sum from purchase table
 		sumPayment = new JLabel();
-		sumPayment.setText(Double.toString(Math.round(sum*100)/100.0));
-
+		sumPayment.setText(Double.toString(Math.round(sum * 100) / 100.0));
 		changePayment = new JTextField();
 		changePayment.setText("0");
 		changePayment.setEnabled(false);
-
 		amountField = new JFormattedTextField();
 		amountField.setText("0");
 		amountField.setColumns(10);
 		amountField.getDocument().addDocumentListener(new Dkuular());
-
-		// Warning message
 		message = new JLabel("");
-
 		add(new JLabel("Total: "));
 		add(sumPayment);
-
 		add(new JLabel("Return amount: "));
 		add(changePayment);
-
 		add(new JLabel("Enter money here: "));
 		add(amountField);
-
 		add(acceptPayment);
 		add(cancelPayment);
-
 		add(message);
 		return panel;
 
@@ -114,7 +99,6 @@ public class PaymentConfirmation extends JDialog {
 				acceptButtonClicked();
 			}
 		});
-
 		return b;
 	}
 
@@ -131,7 +115,6 @@ public class PaymentConfirmation extends JDialog {
 				cancelButtonClicked();
 			}
 		});
-
 		return b;
 	}
 
@@ -147,9 +130,7 @@ public class PaymentConfirmation extends JDialog {
 				allnumbers = false;
 			}
 		}
-
 		if (allnumbers == true) {
-			// Checking if there is enough money entered
 			payment = ((Number) Double.parseDouble(amountField.getText()))
 					.doubleValue();
 			if ((payment - sum) >= 0) {
@@ -168,7 +149,6 @@ public class PaymentConfirmation extends JDialog {
 		changePayment.setText("0");
 		accepted = false;
 		setVisible(false);
-
 	}
 
 	/**
@@ -177,7 +157,6 @@ public class PaymentConfirmation extends JDialog {
 	 * 
 	 */
 	class Dkuular implements DocumentListener {
-
 		@Override
 		public void insertUpdate(DocumentEvent e) {
 			update();
@@ -199,15 +178,13 @@ public class PaymentConfirmation extends JDialog {
 
 		private void update() {
 			try {
-
 				payment = ((Number) Double.parseDouble(amountField.getText()))
 						.doubleValue();
-				changePayment.setText(Double.toString(Math.round((payment - sum)*100)/100.0));
-			} catch (NumberFormatException ex) { // handle your exception
+				changePayment.setText(Double.toString(Math
+						.round((payment - sum) * 100) / 100.0));
+			} catch (NumberFormatException ex) {
 				changePayment.setText("0");
 			}
 		}
-
 	}
-
 }

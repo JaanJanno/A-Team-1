@@ -8,7 +8,6 @@ import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 
 public class PurchaseHistoryTableModel extends SalesSystemTableModel<SoldItem> {
 	private static final long serialVersionUID = 1L;
-
 	private static final Logger log = Logger
 			.getLogger(PurchaseInfoTableModel.class);
 
@@ -28,7 +27,7 @@ public class PurchaseHistoryTableModel extends SalesSystemTableModel<SoldItem> {
 		case 3:
 			return item.getQuantity();
 		case 4:
-			return Math.round(item.getQuantity() * item.getPrice()*100)/100.0;
+			return Math.round(item.getQuantity() * item.getPrice() * 100) / 100.0;
 		}
 		throw new IllegalArgumentException("Column index out of range");
 	}
@@ -36,11 +35,9 @@ public class PurchaseHistoryTableModel extends SalesSystemTableModel<SoldItem> {
 	@Override
 	public String toString() {
 		final StringBuffer buffer = new StringBuffer();
-
 		for (int i = 0; i < headers.length; i++)
 			buffer.append(headers[i] + "\t");
 		buffer.append("\n");
-
 		for (final SoldItem item : rows) {
 			buffer.append(item.getId() + "\t");
 			buffer.append(item.getName() + "\t");
@@ -49,7 +46,6 @@ public class PurchaseHistoryTableModel extends SalesSystemTableModel<SoldItem> {
 			buffer.append(item.getSum() + "\t");
 			buffer.append("\n");
 		}
-
 		return buffer.toString();
 	}
 
@@ -83,7 +79,6 @@ public class PurchaseHistoryTableModel extends SalesSystemTableModel<SoldItem> {
 		for (final SoldItem item : rows) {
 			sum += item.getSum();
 		}
-
 		return sum;
 	}
 

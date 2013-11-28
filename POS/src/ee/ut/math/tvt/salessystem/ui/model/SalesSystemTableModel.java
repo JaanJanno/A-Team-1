@@ -13,9 +13,7 @@ import ee.ut.math.tvt.salessystem.domain.data.DisplayableItem;
  */
 public abstract class SalesSystemTableModel<T extends DisplayableItem> extends
 		AbstractTableModel {
-
 	private static final long serialVersionUID = 1L;
-
 	protected List<T> rows;
 	protected final String[] headers;
 
@@ -53,7 +51,6 @@ public abstract class SalesSystemTableModel<T extends DisplayableItem> extends
 		return getColumnValue(rows.get(rowIndex), columnIndex);
 	}
 
-	// search for item with the specified id
 	public T getItemById(final long id) {
 		for (final T item : rows) {
 			if (item.getId() == id)
@@ -75,5 +72,4 @@ public abstract class SalesSystemTableModel<T extends DisplayableItem> extends
 		rows.clear();
 		rows.addAll(data);
 	}
-
 }

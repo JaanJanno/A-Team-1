@@ -21,7 +21,6 @@ public interface SalesDomainController {
 	 */
 	public List<StockItem> loadWarehouseState();
 
-	// business processes
 	/**
 	 * Initiate new business transaction - purchase of the goods.
 	 * 

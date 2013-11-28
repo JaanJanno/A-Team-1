@@ -13,30 +13,24 @@ import org.hibernate.service.ServiceRegistryBuilder;
  */
 public class HibernateUtil {
 	private static final Logger log = Logger.getLogger(HibernateUtil.class);
-
 	private static ServiceRegistry serviceRegistry;
 	public static final SessionFactory sessionFactory;
+	private static Session session;
 
 	static {
 		try {
-			// Create the SessionFactory from hibernate.cfg.xml
 			Configuration configuration = new Configuration();
 			configuration.configure();
-
-			serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+			serviceRegistry = new ServiceRegistryBuilder().applySettings(
+					configuration.getProperties()).buildServiceRegistry();
 			sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-
 		} catch (Throwable ex) {
-			// Make sure you log the exception, as it might be swallowed
 			log.error("Initial SessionFactory creation failed.", ex);
 			throw new ExceptionInInitializerError(ex);
 		}
 	}
 
-	private static Session session;
-
 	public static Session currentSession() throws HibernateException {
-		// Open a new Session, if this thread has none yet
 		if (session == null) {
 			session = sessionFactory.openSession();
 		}
@@ -48,5 +42,4 @@ public class HibernateUtil {
 			session.close();
 		session = null;
 	}
-
 }

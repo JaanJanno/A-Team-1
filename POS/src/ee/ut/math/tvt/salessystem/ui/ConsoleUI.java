@@ -21,16 +21,12 @@ import ee.ut.math.tvt.salessystem.domain.data.StockItem;
  */
 public class ConsoleUI {
 	private static final Logger log = Logger.getLogger(ConsoleUI.class);
-
 	private final SalesDomainController dc;
-
 	private List<StockItem> cart;
-
 	private List<StockItem> warehouse;
 
 	public ConsoleUI(SalesDomainController domainController) {
 		this.dc = domainController;
-
 		cart = new ArrayList<StockItem>();
 		warehouse = new ArrayList<StockItem>();
 	}
@@ -40,9 +36,7 @@ public class ConsoleUI {
 	 */
 	public void run() {
 		try {
-			// populate warehouse with goodies
 			populateWarehouse();
-
 			System.out.println("===========================");
 			System.out.println("=       Sales System      =");
 			System.out.println("===========================");
@@ -50,7 +44,6 @@ public class ConsoleUI {
 			BufferedReader in = new BufferedReader(new InputStreamReader(
 					System.in));
 			String command = "";
-
 			while (true) {
 				System.out.print("> ");
 				command = in.readLine();
@@ -101,14 +94,12 @@ public class ConsoleUI {
 
 	private void processCommand(String command) {
 		String[] c = command.split(" ");
-
 		if (c[0].equals("h"))
 			printUsage();
 		else if (c[0].equals("q")) {
 			dc.endSession();
-			System.exit(0);			
-		}
-		else if (c[0].equals("w"))
+			System.exit(0);
+		} else if (c[0].equals("w"))
 			showStock(warehouse);
 		else if (c[0].equals("c"))
 			showStock(cart);

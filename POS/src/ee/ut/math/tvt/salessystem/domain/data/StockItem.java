@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
-
 /**
  * Stock item. Corresponds to the Data Transfer Object design pattern.
  */
@@ -19,26 +17,27 @@ import javax.persistence.Table;
 @Table(name = "STOCKITEM")
 public class StockItem implements Cloneable, DisplayableItem {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Don't know if necessary. TK
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-    @Column(name = "name")
+	@Column(name = "name")
 	private String name;
 
-    @Column(name = "price")
+	@Column(name = "price")
 	private double price;
 
-    @Column(name = "description")
+	@Column(name = "description")
 	private String description;
 
-    @Column(name = "quantity")
+	@Column(name = "quantity")
 	private int quantity;
 
-    @OneToMany(mappedBy = "stockItem")
-    private Set<SoldItem> soldItems;
+	@OneToMany(mappedBy = "stockItem")
+	private Set<SoldItem> soldItems;
+
 	/**
-	 * Constucts new <code>StockItem</code> with the specified values.
+	 * Constructs new <code>StockItem</code> with the specified values.
 	 * 
 	 * @param id
 	 *            barcode id

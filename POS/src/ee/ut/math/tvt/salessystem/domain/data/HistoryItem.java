@@ -14,8 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
-
 /**
  * Holds date, time and sum of purchase along with a List of SoldItems connected
  * to this purchase.
@@ -24,19 +22,19 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "HISTORYITEM")
-public class HistoryItem implements Cloneable,DisplayableItem {
+public class HistoryItem implements Cloneable, DisplayableItem {
 
 	private static final Format DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy");
-	private static final DateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm:ss");
-	
+	private static final DateFormat TIME_FORMAT = new SimpleDateFormat(
+			"HH:mm:ss");
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-    @Column(name = "purchase_date")
+	@Column(name = "purchase_date")
 	private Date date;
-    @Column(name = "total")
+	@Column(name = "total")
 	private double sum;
-    @OneToMany(mappedBy = "historyItem")
+	@OneToMany(mappedBy = "historyItem")
 	private List<SoldItem> goods;
 
 	public HistoryItem(List<SoldItem> goods) {
@@ -47,7 +45,10 @@ public class HistoryItem implements Cloneable,DisplayableItem {
 			sum += soldItem.getSum();
 		}
 	}
-	public HistoryItem() {};
+
+	public HistoryItem() {
+	};
+
 	public double getSum() {
 		return sum;
 	}
@@ -55,9 +56,10 @@ public class HistoryItem implements Cloneable,DisplayableItem {
 	public String getDate() {
 		return date == null ? "?" : DATE_FORMAT.format(date);
 	}
+
 	public String getTime() {
 		return date == null ? "?" : TIME_FORMAT.format(date);
-	}	
+	}
 
 	@Override
 	public Long getId() {

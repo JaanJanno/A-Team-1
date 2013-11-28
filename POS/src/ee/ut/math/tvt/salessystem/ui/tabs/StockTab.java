@@ -32,54 +32,43 @@ import javax.swing.table.JTableHeader;
 import org.apache.log4j.Logger;
 
 public class StockTab {
-
 	private JButton addItem;
 	private SalesSystemModel model;
 	private static final Logger log = Logger.getLogger(Intro.class);
 	final JFrame frame = new JFrame("Add a new item");
 	private final SalesDomainController domainController;
 	StockItem stockitem;
-	
+
 	public StockTab(SalesDomainController controller, SalesSystemModel model) {
 		this.domainController = controller;
 		this.model = model;
 	}
 
-	// warehouse stock tab - consists of a menu and a table
 	public Component draw() {
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
 		GridBagLayout gb = new GridBagLayout();
 		GridBagConstraints gc = new GridBagConstraints();
 		panel.setLayout(gb);
-
 		gc.fill = GridBagConstraints.HORIZONTAL;
 		gc.anchor = GridBagConstraints.NORTH;
 		gc.gridwidth = GridBagConstraints.REMAINDER;
 		gc.weightx = 1.0d;
 		gc.weighty = 0d;
-
 		panel.add(drawStockMenuPane(), gc);
-
 		gc.weighty = 1.0;
 		gc.fill = GridBagConstraints.BOTH;
 		panel.add(drawStockMainPane(), gc);
 		return panel;
 	}
 
-	// warehouse menu
 	private Component drawStockMenuPane() {
 		JPanel panel = new JPanel();
-
 		GridBagConstraints gc = new GridBagConstraints();
 		GridBagLayout gb = new GridBagLayout();
-
 		panel.setLayout(gb);
-
 		gc.anchor = GridBagConstraints.NORTHWEST;
 		gc.weightx = 0;
-
 		addItem = new JButton("Add");
 		gc.gridwidth = GridBagConstraints.RELATIVE;
 		gc.weightx = 1.0;
@@ -90,31 +79,23 @@ public class StockTab {
 				addItemEventHandler();
 			}
 		});
-
 		panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		return panel;
 	}
 
-	// table of the wareshouse stock
 	private Component drawStockMainPane() {
 		JPanel panel = new JPanel();
-
 		JTable table = new JTable(model.getWarehouseTableModel());
-
 		JTableHeader header = table.getTableHeader();
 		header.setReorderingAllowed(false);
-
 		JScrollPane scrollPane = new JScrollPane(table);
-
 		GridBagConstraints gc = new GridBagConstraints();
 		GridBagLayout gb = new GridBagLayout();
 		gc.fill = GridBagConstraints.BOTH;
 		gc.weightx = 1.0;
 		gc.weighty = 1.0;
-
 		panel.setLayout(gb);
 		panel.add(scrollPane, gc);
-
 		panel.setBorder(BorderFactory.createTitledBorder("Warehouse status"));
 		return panel;
 	}
@@ -141,6 +122,7 @@ public class StockTab {
 		final JTextField descField = new JTextField(20);
 		final JTextField priceField = new JTextField(20);
 		final JTextField quantityField = new JTextField(20);
+
 		JLabel nameLabel = new JLabel("Name:", SwingConstants.CENTER);
 		JLabel quantityLabel = new JLabel("Quantity:", SwingConstants.CENTER);
 		JLabel priceLabel = new JLabel("Price:", SwingConstants.CENTER);
@@ -157,7 +139,6 @@ public class StockTab {
 
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-
 		confirmButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -168,38 +149,36 @@ public class StockTab {
 					if (name.trim() == "") {
 						log.debug("You must enter a name for the new item.");
 					} else {
-
 						List<StockItem> list = model.getWarehouseTableModel()
 								.getTableRows();
 						boolean alreadyExists = false;
 						for (StockItem item : list) {
 							if (item.getName().equals(name)) {
 								alreadyExists = true;
-								stockitem=item;
+								stockitem = item;
 							}
 						}
 						if (!alreadyExists) {
 							String desc = descField.getText();
-							double price = Double.parseDouble(priceField.getText());
+							double price = Double.parseDouble(priceField
+									.getText());
 							StockItem item = list.get(list.size() - 1);
 							long id = item.getId() + 1;
-							
-							StockItem newItem = new StockItem(id, name.trim(), desc, price,
-									quantity);
-							model.getWarehouseTableModel().addItem(newItem
-									);
-							
-							// Adding to database
+							StockItem newItem = new StockItem(id, name.trim(),
+									desc, price, quantity);
+							model.getWarehouseTableModel().addItem(newItem);
 							domainController.addToWarehouse(newItem);
 							PurchaseItemPanel.fillItemNameBox();
 							frame.setVisible(false);
 							frame.dispose();
 						} else {
-							domainController.changeStockItemQuantity(stockitem, quantity);
+							domainController.changeStockItemQuantity(stockitem,
+									quantity);
 							PurchaseItemPanel.fillItemNameBox();
 							frame.setVisible(false);
 							frame.dispose();
-							log.debug("Quantity of "+name+" increased by "+quantity+".");
+							log.debug("Quantity of " + name + " increased by "
+									+ quantity + ".");
 						}
 					}
 				} catch (Exception e1) {
@@ -212,5 +191,4 @@ public class StockTab {
 			}
 		});
 	}
-
 }

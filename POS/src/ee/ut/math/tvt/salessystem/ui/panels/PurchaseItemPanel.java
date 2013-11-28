@@ -28,18 +28,12 @@ import javax.swing.JTextField;
  * Purchase pane + shopping cart tabel UI.
  */
 public class PurchaseItemPanel extends JPanel {
-
 	private static final long serialVersionUID = 1L;
-
-	// Text field on the dialogPane
 	private static JComboBox<String> itemNameBox;
 	private JTextField barCodeField;
 	private JTextField quantityField;
 	private JTextField priceField;
-
 	private JButton addItemButton;
-
-	// Warehouse model
 	private static SalesSystemModel model;
 
 	/**
@@ -50,80 +44,48 @@ public class PurchaseItemPanel extends JPanel {
 	 */
 	public PurchaseItemPanel(SalesSystemModel model) {
 		PurchaseItemPanel.model = model;
-
 		setLayout(new GridBagLayout());
-
 		add(drawDialogPane(), getDialogPaneConstraints());
 		add(drawBasketPane(), getBasketPaneConstraints());
-
 		setEnabled(false);
 	}
 
-	// shopping cart pane
+	// Shopping cart pane
 	private JComponent drawBasketPane() {
-
-		// Create the basketPane
 		JPanel basketPane = new JPanel();
 		basketPane.setLayout(new GridBagLayout());
 		basketPane.setBorder(BorderFactory.createTitledBorder("Shopping cart"));
-
-		// Create the table, put it inside a scollPane,
-		// and add the scrollPane to the basketPanel.
 		JTable table = new JTable(model.getCurrentPurchaseTableModel());
 		JScrollPane scrollPane = new JScrollPane(table);
-
 		basketPane.add(scrollPane, getBacketScrollPaneConstraints());
-
 		return basketPane;
 	}
 
-	// purchase dialog
+	// Purchase dialog
 	private JComponent drawDialogPane() {
-
-		// Create the panel
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(5, 2));
 		panel.setBorder(BorderFactory.createTitledBorder("Product"));
-
-		// Initialize the textfields
 		barCodeField = new JTextField();
 		quantityField = new JTextField("1");
 		priceField = new JTextField();
-
-		// Dropdown menu to select products
 		itemNameBox = new JComboBox<String>();
 		fillItemNameBox();
-
-		// Fill the dialog fields if the bar code text field loses focus
 		itemNameBox.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				fillDialogFields();
 			}
 		});
-
-		// nameField.setEditable(false);
 		priceField.setEditable(false);
-
-		// == Add components to the panel
-
-		// - bar code
 		panel.add(new JLabel("Bar code:"));
 		panel.add(barCodeField);
-
-		// - amount
 		panel.add(new JLabel("Amount:"));
 		panel.add(quantityField);
-
-		// - name
 		panel.add(new JLabel("Name:"));
 		panel.add(itemNameBox);
-
-		// - price
 		panel.add(new JLabel("Price:"));
 		panel.add(priceField);
-
-		// Create and add the button
 		addItemButton = new JButton("Add to cart");
 		addItemButton.addActionListener(new ActionListener() {
 			@Override
@@ -131,12 +93,9 @@ public class PurchaseItemPanel extends JPanel {
 				addItemEventHandler();
 			}
 		});
-
 		panel.add(addItemButton);
-
 		return panel;
 	}
-
 
 	/**
 	 * Fill dialog with data from the "database".
@@ -146,7 +105,6 @@ public class PurchaseItemPanel extends JPanel {
 	//
 	public void fillDialogFields() {
 		StockItem stockItem = getStockItemByName();
-
 		if (stockItem != null) {
 			barCodeField.setText(String.valueOf(stockItem.getId()));
 			String priceString = String.valueOf(stockItem.getPrice());
@@ -155,7 +113,6 @@ public class PurchaseItemPanel extends JPanel {
 			reset();
 		}
 	}
-
 
 	/**
 	 * Search the warehouse for a StockItem with the name selected in the
@@ -179,7 +136,6 @@ public class PurchaseItemPanel extends JPanel {
 	 * Add new item to the cart.
 	 */
 	public void addItemEventHandler() {
-		// add chosen item to the shopping cart.
 		StockItem stockItem = getStockItemByName();
 		if (stockItem != null) {
 			int quantity;
@@ -197,7 +153,6 @@ public class PurchaseItemPanel extends JPanel {
 				model.getCurrentPurchaseTableModel().addItem(
 						new SoldItem(stockItem, quantity));
 			}
-
 		}
 	}
 
@@ -220,9 +175,6 @@ public class PurchaseItemPanel extends JPanel {
 		this.barCodeField.setEnabled(enabled);
 		this.quantityField.setEnabled(enabled);
 		itemNameBox.setEnabled(enabled);
-
-		// This is here because otherwise the user must select
-		// another product and then the first to buy the first one
 		fillDialogFields();
 	}
 
@@ -248,53 +200,31 @@ public class PurchaseItemPanel extends JPanel {
 		}
 	}
 
-	/*
-	 * === Ideally, UI's layout and behavior should be kept as separated as
-	 * possible. If you work on the behavior of the application, you don't want
-	 * the layout details to get on your way all the time, and vice versa. This
-	 * separation leads to cleaner, more readable and better maintainable code.
-	 * 
-	 * In a Swing application, the layout is also defined as Java code and this
-	 * separation is more difficult to make. One thing that can still be done is
-	 * moving the layout-defining code out into separate methods, leaving the
-	 * more important methods unburdened of the messy layout code. This is done
-	 * in the following methods.
-	 */
-
-	// Formatting constraints for the dialogPane
 	private GridBagConstraints getDialogPaneConstraints() {
 		GridBagConstraints gc = new GridBagConstraints();
-
 		gc.anchor = GridBagConstraints.WEST;
 		gc.weightx = 0.2;
 		gc.weighty = 0d;
 		gc.gridwidth = GridBagConstraints.REMAINDER;
 		gc.fill = GridBagConstraints.NONE;
-
 		return gc;
 	}
 
-	// Formatting constraints for the basketPane
 	private GridBagConstraints getBasketPaneConstraints() {
 		GridBagConstraints gc = new GridBagConstraints();
-
 		gc.anchor = GridBagConstraints.WEST;
 		gc.weightx = 0.2;
 		gc.weighty = 1.0;
 		gc.gridwidth = GridBagConstraints.REMAINDER;
 		gc.fill = GridBagConstraints.BOTH;
-
 		return gc;
 	}
 
 	private GridBagConstraints getBacketScrollPaneConstraints() {
 		GridBagConstraints gc = new GridBagConstraints();
-
 		gc.fill = GridBagConstraints.BOTH;
 		gc.weightx = 1.0;
 		gc.weighty = 1.0;
-
 		return gc;
 	}
-
 }
