@@ -11,24 +11,20 @@ import org.hibernate.cfg.AnnotationConfiguration;
  */
 public class HibernateUtil {
 	private static final Logger log = Logger.getLogger(HibernateUtil.class);
-
 	public static final SessionFactory sessionFactory;
+	private static Session session;
 
 	static {
 		try {
-			// Create the SessionFactory from hibernate.cfg.xml
-			sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
+			sessionFactory = new AnnotationConfiguration().configure()
+					.buildSessionFactory();
 		} catch (Throwable ex) {
-			// Make sure you log the exception, as it might be swallowed
 			log.error("Initial SessionFactory creation failed.", ex);
 			throw new ExceptionInInitializerError(ex);
 		}
 	}
 
-	private static Session session;
-
 	public static Session currentSession() throws HibernateException {
-		// Open a new Session, if this thread has none yet
 		if (session == null) {
 			session = sessionFactory.openSession();
 		}
@@ -40,5 +36,4 @@ public class HibernateUtil {
 			session.close();
 		session = null;
 	}
-
 }

@@ -12,62 +12,49 @@ import javax.swing.JTable;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 
-
 public class ClientTab {
-    private SalesDomainController controller;
-    private SalesSystemModel model;
-    
-    public ClientTab(SalesSystemModel model) {
-        this.model = model;
-    } 
-    
-    /**
-     * The main entry-point method. Creates the tab.
-     */
-    public Component draw() {
-        JPanel panel = new JPanel();
-        
-        GridBagConstraints gc = getGbConstraints();
-        GridBagLayout gb = new GridBagLayout();
-        
-        panel.setLayout(gb);
-        panel.add(drawClientsTable(), gc);
+	private SalesDomainController controller;
+	private SalesSystemModel model;
 
-        return panel;
-    }
+	public ClientTab(SalesSystemModel model) {
+		this.model = model;
+	}
 
-    
+	/**
+	 * The main entry-point method. Creates the tab.
+	 */
+	public Component draw() {
+		JPanel panel = new JPanel();
+		GridBagConstraints gc = getGbConstraints();
+		GridBagLayout gb = new GridBagLayout();
+		panel.setLayout(gb);
+		panel.add(drawClientsTable(), gc);
+		return panel;
+	}
 
-    
-    private Component drawClientsTable() {
+	private Component drawClientsTable() {
+		JTable table = new JTable(model.getClientTableModel());
+		table.getTableHeader().setReorderingAllowed(false);
+		JScrollPane scrollPane = new JScrollPane(table);
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridBagLayout());
+		panel.setBorder(BorderFactory.createTitledBorder("Clients"));
+		panel.add(scrollPane, getGbConstraints());
+		return panel;
+	}
 
-        // Create the table 
-        JTable table = new JTable(model.getClientTableModel());
-        table.getTableHeader().setReorderingAllowed(false);
-        JScrollPane scrollPane = new JScrollPane(table);
+	private GridBagConstraints getGbConstraints() {
+		GridBagConstraints gc = new GridBagConstraints();
+		gc.fill = GridBagConstraints.BOTH;
+		gc.gridwidth = GridBagConstraints.REMAINDER;
+		gc.weightx = 1.0;
+		gc.weighty = 1.0;
+		return gc;
+	}
 
-        // Wrap it inside a panel
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridBagLayout());
-        panel.setBorder(BorderFactory.createTitledBorder("Clients"));
-        
-        panel.add(scrollPane, getGbConstraints());
-        
-        return panel;
-    }
-
-
-    
-    private GridBagConstraints getGbConstraints() {
-        GridBagConstraints gc = new GridBagConstraints();
-        gc.fill = GridBagConstraints.BOTH;
-        gc.gridwidth = GridBagConstraints.REMAINDER;
-        gc.weightx = 1.0;
-        gc.weighty = 1.0;
-        return gc;
-    }    
-    public void refresh() { 
-    	model.getClientTableModel().populateWithData(controller.getAllClients());
-    	this.draw();
-    }
+	public void refresh() {
+		model.getClientTableModel()
+				.populateWithData(controller.getAllClients());
+		this.draw();
+	}
 }
