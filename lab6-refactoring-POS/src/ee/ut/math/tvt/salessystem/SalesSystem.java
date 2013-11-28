@@ -11,30 +11,22 @@ import org.apache.log4j.Logger;
  * system.
  */
 public class SalesSystem {
-    
-    private static final Logger log = Logger.getLogger(SalesSystem.class);
 
-    /**
-     * Main method.
-     */
-    public static void main(String args[]) {
+	private static final Logger log = Logger.getLogger(SalesSystem.class);
 
-        final SalesDomainController domainController = new SalesDomainControllerImpl();
-
-        if (args.length == 1 && args[0].equals("console")) {
-            // a small console UI
-            ConsoleUI cui = new ConsoleUI(domainController);
-            cui.run();
-        } else {
-            // Swing UI
-            log.debug("Strating SalesSystem with the Swing UI ..");
-            final SalesSystemUI ui = new SalesSystemUI(domainController);
-
-            ui.setVisible(true);
-        }
-
-        log.info("SalesSystem started");
-
-    }
-
+	/**
+	 * Main method.
+	 */
+	public static void main(String args[]) {
+		final SalesDomainController domainController = new SalesDomainControllerImpl();
+		if (args.length == 1 && args[0].equals("console")) {
+			ConsoleUI cui = new ConsoleUI(domainController);
+			cui.run();
+		} else {
+			log.debug("Strating SalesSystem with the Swing UI ..");
+			final SalesSystemUI ui = new SalesSystemUI(domainController);
+			ui.setVisible(true);
+		}
+		log.info("SalesSystem started");
+	}
 }
