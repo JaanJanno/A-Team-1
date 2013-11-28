@@ -1,34 +1,6 @@
-2013-11-28 18:38:38,300 [main] DEBUG - Strating SalesSystem with the Swing UI ..
-2013-11-28 18:38:38,529 [main] INFO - 7 items loaded from disk
-2013-11-28 18:38:38,537 [main] INFO - 1 clients loaded from disk
-2013-11-28 18:38:38,564 [main] INFO - 16 Sales loaded from disk
-2013-11-28 18:38:39,117 [main] INFO - SalesSystem started
-2013-11-28 18:38:40,117 [AWT-EventQueue-0] INFO - New sale process started
-2013-11-28 18:38:40,118 [AWT-EventQueue-0] INFO - New purchase started
-2013-11-28 18:38:40,126 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-28 18:38:40,997 [AWT-EventQueue-0] INFO - Client Toomas with ID=1 got selected.
-2013-11-28 18:38:41,997 [AWT-EventQueue-0] DEBUG - Added Layz krõpsud quantity of 1
-2013-11-28 18:38:45,189 [AWT-EventQueue-0] DEBUG - Added Tere piim quantity of 1
-2013-11-28 18:38:49,045 [AWT-EventQueue-0] INFO - Sale complete
-2013-11-28 18:38:49,046 [AWT-EventQueue-0] DEBUG - Contents of the current basket:
-Id	Name	Price	Quantity	Sum	
-null	Layz krõpsud	10.5	1	10.5	
-null	Tere piim	13.7	1	13.7	
-
-2013-11-28 18:38:49,050 [AWT-EventQueue-0] INFO - [ee.ut.math.tvt.salessystem.domain.data.SoldItem@54c63109, ee.ut.math.tvt.salessystem.domain.data.SoldItem@1fbd715a]
-2013-11-28 18:38:50,397 [AWT-EventQueue-0] INFO - New sale process started
-2013-11-28 18:38:50,397 [AWT-EventQueue-0] INFO - New purchase started
-2013-11-28 18:38:50,404 [AWT-EventQueue-0] INFO - 1 clients loaded from disk
-2013-11-28 18:38:51,619 [AWT-EventQueue-0] INFO - Client Toomas with ID=1 got selected.
-2013-11-28 18:38:57,981 [AWT-EventQueue-0] DEBUG - Added Suur liha quantity of 31
-2013-11-28 18:39:05,221 [AWT-EventQueue-0] INFO -  -- not enough in stock!
-2013-11-28 18:39:06,027 [AWT-EventQueue-0] DEBUG -   -- there was not enough cargo in warehouse to add item
-2013-11-28 18:39:07,909 [AWT-EventQueue-0] DEBUG - Added kohv quantity of 4
-2013-11-28 18:39:13,221 [AWT-EventQueue-0] INFO - Sale complete
-2013-11-28 18:39:13,221 [AWT-EventQueue-0] DEBUG - Contents of the current basket:
-Id	Name	Price	Quantity	Sum	
-null	Suur liha	6.5	31	201.5	
-null	kohv	19.0	4	76.0	
-
-2013-11-28 18:39:13,222 [AWT-EventQueue-0] INFO - [ee.ut.math.tvt.salessystem.domain.data.SoldItem@3f219e5c, ee.ut.math.tvt.salessystem.domain.data.SoldItem@3823ca65]
-2013-11-28 18:39:35,031 [AWT-EventQueue-0] INFO - SalesSystem closed
+2013-11-28 20:34:58,661 [main] DEBUG - Strating SalesSystem with the Swing UI ..
+2013-11-28 20:34:59,042 [main] INFO - 7 items loaded from disk
+2013-11-28 20:34:59,053 [main] INFO - 1 clients loaded from disk
+2013-11-28 20:34:59,080 [main] INFO - 13 Sales loaded from disk
+2013-11-28 20:34:59,101 [main] WARN - [The JGoodies Windows Look and Feel - Â© 2001-2006 JGoodies Karsten Lentzsch - com.jgoodies.looks.windows.WindowsLookAndFeel] not supported on this platform
+2013-11-28 20:34:59,448 [main] INFO - SalesSystem started
