@@ -93,13 +93,13 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 	 *            of item
 	 * @param quantity
 	 *            of item
+	 * @throws OverLimitException when there aren't enough items in stock
 	 */
-	public void hasEnoughInStock(final String name, int quantity)
-			throws OverLimitException {
+	public void hasEnoughInStock(final String name, int quantity) throws OverLimitException{
 		StockItem item = getItemByName(name);
-		if (quantity > item.getQuantity())
+		if (quantity > item.getQuantity()) {
 			throw new OverLimitException("Not enough of " + name
 					+ " in stock. Quantity exceeded by "
 					+ (quantity - item.getQuantity()) + ".");
-	}
+	}}
 }
