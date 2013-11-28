@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 import org.apache.log4j.Logger;
 
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
+import ee.ut.math.tvt.salessystem.domain.exception.OverLimitException;
 
 /**
  * Stock item table model.
@@ -87,7 +88,24 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 		}
 		throw new NoSuchElementException();
 	}
-	
-	
 
+	/**
+	 * Checks if there is enough of the requested item in stock.
+	 * 
+	 * @author Juhan
+	 * @param name
+	 *            of item
+	 * @param quantity
+	 *            of item
+	 * @return
+	 */
+	public void hasEnoughInStock(final String name, int quantity)
+			throws OverLimitException {
+		StockItem item = getItemByName(name);
+		if (quantity > item.getQuantity())
+			throw new OverLimitException("Not enough of " + name
+					+ " in stock. Quantity exceeded by "
+					+ (quantity - item.getQuantity()) + ".");
+
+	}
 }
