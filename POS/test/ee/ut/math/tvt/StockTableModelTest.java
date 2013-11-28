@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
+import ee.ut.math.tvt.salessystem.domain.exception.OverLimitException;
 import ee.ut.math.tvt.salessystem.ui.model.StockTableModel;
 
 public class StockTableModelTest {
@@ -33,8 +34,17 @@ public class StockTableModelTest {
 		assertTrue(control.equals(test.getTableRows()));
 	}
 
+	@Test
 	public void testHasEnoughInStock() {
-
+		test.clear();
+		temp = new StockItem((long) 5, "Test", "Test", 15,15);
+		test.addItem(temp);
+		try {
+			test.hasEnoughInStock("Test", 20);
+			assertTrue(false);
+		} catch (OverLimitException e) {
+			assertTrue(true);
+		}
 	}
 
 	@Test
