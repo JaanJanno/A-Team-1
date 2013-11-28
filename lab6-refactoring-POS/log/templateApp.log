@@ -1,13 +1,7 @@
-2013-11-28 23:05:36,001 [main] DEBUG - Strating SalesSystem with the Swing UI ..
-2013-11-28 23:05:36,201 [main] INFO - 7 items loaded from disk
-2013-11-28 23:05:36,201 [main] INFO - 1 clients loaded from disk
-2013-11-28 23:05:36,216 [main] INFO - 13 Sales loaded from disk
-2013-11-28 23:05:36,771 [main] INFO - SalesSystem started
-2013-11-28 23:05:38,891 [AWT-EventQueue-0] INFO - 7 items loaded from disk
-2013-11-28 23:05:52,297 [AWT-EventQueue-0] INFO - 7 items loaded from disk
-2013-11-28 23:05:52,307 [AWT-EventQueue-0] INFO - 7 items loaded from disk
-2013-11-28 23:05:52,312 [AWT-EventQueue-0] INFO - 7 items loaded from disk
-2013-11-28 23:05:54,102 [AWT-EventQueue-0] INFO - 7 items loaded from disk
-2013-11-28 23:05:54,112 [AWT-EventQueue-0] INFO - 7 items loaded from disk
-2013-11-28 23:06:05,409 [AWT-EventQueue-0] INFO - 7 items loaded from disk
-2013-11-28 23:06:06,684 [AWT-EventQueue-0] INFO - SalesSystem closed
+2013-11-28 23:30:10,941 [main] DEBUG - Strating SalesSystem with the Swing UI ..
+2013-11-28 23:30:12,701 [main] INFO - 7 items loaded from disk
+2013-11-28 23:30:12,709 [main] INFO - 1 clients loaded from disk
+2013-11-28 23:30:12,725 [main] INFO - 13 Sales loaded from disk
+2013-11-28 23:30:14,193 [main] INFO - SalesSystem started
+2013-11-28 23:30:16,918 [AWT-EventQueue-0] INFO - 7 items loaded from disk
+2013-11-28 23:30:19,444 [AWT-EventQueue-0] INFO - SalesSystem closed
