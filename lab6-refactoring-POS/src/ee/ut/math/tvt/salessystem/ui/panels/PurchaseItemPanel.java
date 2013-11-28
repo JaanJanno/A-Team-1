@@ -141,7 +141,6 @@ public class PurchaseItemPanel extends JPanel {
 
     // Fill dialog with data from the "database".
     public void fillDialogFields() {
-        //StockItem stockItem = getStockItemByBarcode();
         StockItem stockItem = (StockItem) stockItemSelector.getSelectedItem();
 
         if (stockItem != null) {
@@ -184,8 +183,10 @@ public class PurchaseItemPanel extends JPanel {
 
             // If there is not enough stock left in the warehouse to add this quantity..
             try {
+            	SoldItem item = new SoldItem(stockItem, quantity);
                 model.getCurrentPurchaseTableModel()
-                    .addItem(new SoldItem(stockItem, quantity));
+                    .addItem(item);
+                model.getSale().addSoldItem(item);
             } catch (SalesSystemException e) {
                 showNotEnoughInStockWarning();
             }
@@ -226,7 +227,6 @@ public class PurchaseItemPanel extends JPanel {
         }
         barCodeField.setText("");
         quantityField.setText("1");
-        //nameField.setText("");
         priceField.setText("");
     }
 

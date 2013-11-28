@@ -22,7 +22,8 @@ public class SalesSystemModel {
 
     private ClientTableModel clientTableModel;
 
-    private Client selectedClient;
+    // Here because it's easily accessible from the UI
+    private Sale sale;
 
     /**
      * Construct application model.
@@ -69,12 +70,12 @@ public class SalesSystemModel {
         this.purchaseHistoryTableModel = purchaseHistoryTableModel;
     }
 
-    public Client getSelectedClient() {
-        return selectedClient;
-    }
+	public Sale getSale() {
+		return sale;
+	}
 
-    public void setSelectedClient(Client client) {
-        this.selectedClient = client;
-    }
+	public void setSale(Sale sale) {
+		this.sale = sale;
+	}
 
 }
