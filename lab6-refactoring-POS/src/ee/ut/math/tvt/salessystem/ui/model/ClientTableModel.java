@@ -9,11 +9,10 @@ import ee.ut.math.tvt.salessystem.domain.data.Client;
  */
 public class ClientTableModel extends SalesSystemTableModel<Client> {
 	private static final long serialVersionUID = 1L;
-	
 	protected List<Client> rows;
 
 	public ClientTableModel() {
-		super(new String[] { "Id", "First name", "Discount"});
+		super(new String[] { "Id", "First name", "Discount" });
 		rows = new ArrayList<Client>();
 	}
 
@@ -33,36 +32,32 @@ public class ClientTableModel extends SalesSystemTableModel<Client> {
 	@Override
 	public String toString() {
 		final StringBuffer buffer = new StringBuffer();
-
 		for (int i = 0; i < headers.length; i++)
 			buffer.append(headers[i] + "\t");
 		buffer.append("\n");
-
 		for (final Client client : rows) {
 			buffer.append(client.getId() + "\t");
 			buffer.append(client.getFirstName() + "\t");
 			buffer.append(client.getDiscountPercentage() + "\t");
 			buffer.append("\n");
 		}
-
 		return buffer.toString();
 	}
 
 	@Override
 	public List<Client> getTableRows() {
-		// TODO Auto-generated method stub
 		return rows;
 	}
 
 	@Override
 	public void populateWithData(List<Client> data) {
 		rows.clear();
-        rows.addAll(data);
+		rows.addAll(data);
 	}
 
 	@Override
 	public void addRow(Client row) {
 		rows.add(row);
-        fireTableDataChanged();
+		fireTableDataChanged();
 	}
 }

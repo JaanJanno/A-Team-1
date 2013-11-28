@@ -9,61 +9,56 @@ import ee.ut.math.tvt.salessystem.domain.data.DisplayableItem;
  * Generic table model implementation suitable for extending.
  */
 public abstract class SalesSystemTableModel<T extends DisplayableItem> extends
-        AbstractTableModel {
+		AbstractTableModel {
+	private static final long serialVersionUID = 1L;
+	protected final String[] headers;
 
-    private static final long serialVersionUID = 1L;
+	public SalesSystemTableModel(final String[] headers) {
+		this.headers = headers;
+	}
 
-    protected final String[] headers;
+	/**
+	 * @param item
+	 *            item describing selected row
+	 * @param columnIndex
+	 *            selected column index
+	 * @return value displayed in column with specified index
+	 */
+	protected abstract Object getColumnValue(T item, int columnIndex);
 
-    public SalesSystemTableModel(final String[] headers) {
-        this.headers = headers;
-    }
+	public int getColumnCount() {
+		return headers.length;
+	}
 
-    /**
-     * @param item
-     *            item describing selected row
-     * @param columnIndex
-     *            selected column index
-     * @return value displayed in column with specified index
-     */
-    protected abstract Object getColumnValue(T item, int columnIndex);
+	@Override
+	public String getColumnName(final int columnIndex) {
+		return headers[columnIndex];
+	}
 
-    public int getColumnCount() {
-        return headers.length;
-    }
+	public int getRowCount() {
+		return getTableRows().size();
+	}
 
-    @Override
-    public String getColumnName(final int columnIndex) {
-        return headers[columnIndex];
-    }
+	public Object getValueAt(final int rowIndex, final int columnIndex) {
+		return getColumnValue(getTableRows().get(rowIndex), columnIndex);
+	}
 
-    public int getRowCount() {
-        return getTableRows().size();
-    }
+	public T getItemById(final long id) {
+		for (final T item : getTableRows()) {
+			if (item.getId() == id)
+				return item;
+		}
+		throw new NoSuchElementException();
+	}
 
-    public Object getValueAt(final int rowIndex, final int columnIndex) {
-        return getColumnValue(getTableRows().get(rowIndex), columnIndex);
-    }
+	public abstract List<T> getTableRows();
 
-    // search for item with the specified id
-    public T getItemById(final long id) {
-        for (final T item : getTableRows()) {
-            if (item.getId() == id)
-                return item;
-        }
-        throw new NoSuchElementException();
-    }
+	public abstract void populateWithData(final List<T> data); // ware, client,
+																// history
 
-    public abstract List<T> getTableRows();
+	public abstract void addRow(T row); // Historyle
 
-
-    public abstract void populateWithData(final List<T> data); //ware, client, history
-
-    
-    public abstract void addRow(T row); //Historyle
-
-    
-    public T getRow(int index) {
-        return getTableRows().get(index);
-    }   
+	public T getRow(int index) {
+		return getTableRows().get(index);
+	}
 }
