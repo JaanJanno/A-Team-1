@@ -163,7 +163,6 @@ public class ConsoleUI {
 			System.out.println("Illegal client number!");
 			return;
 		}
-		// Test getClient
 		selectedClient = dc.getClient(clients.get(index - 1).getId());
 		System.out.println("Selected client: " + selectedClient.getFirstName());
 	}

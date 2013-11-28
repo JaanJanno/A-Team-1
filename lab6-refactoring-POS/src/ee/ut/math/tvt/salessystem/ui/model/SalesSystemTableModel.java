@@ -53,10 +53,9 @@ public abstract class SalesSystemTableModel<T extends DisplayableItem> extends
 
 	public abstract List<T> getTableRows();
 
-	public abstract void populateWithData(final List<T> data); // ware, client,
-																// history
+	public abstract void populateWithData(final List<T> data);
 
-	public abstract void addRow(T row); // Historyle
+	public abstract void addRow(T row);
 
 	public T getRow(int index) {
 		return getTableRows().get(index);
