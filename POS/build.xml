@@ -22,7 +22,7 @@
 		<fileset dir="${lib.dir}">
 			<include name="*.jar"/>
 		</fileset>
-		<pathelement path="${build.classes.dir}/" />
+		<pathelement path="bin" />
 		<pathelement path="${build.test.dir}/" />
 	</path>
 
